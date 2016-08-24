@@ -12,4 +12,9 @@ test-api:
 				--reporter $(REPORTER) \
 				--recursive
 
-.PHONY: test-app test-api
+test-models:
+		$(TEST_ENV) $(MOCHA) tests/models.js \
+				--reporter $(REPORTER) \
+				--recursive
+
+.PHONY: test-app test-api test-models
