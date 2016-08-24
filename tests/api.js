@@ -23,25 +23,31 @@ describe('API', function() {
 
   describe('routes/api/districts', function() {
     it('returns array of all district summary objects')
-    it('returns array of district objects matching district number')
-    it('requires numeric parameters')
+    it('returns array of district object matching district number')
+    it('requires numeric parameter')
   })
 
   describe('routes/api/zipcode', function() {
     it('returns array of all zipcode summary objects')
-    it('returns array of zipcode objects matching zipcode number')
-    it('requires numeric parameters')
+    it('returns array of zipcode object matching zipcode number')
+    it('requires numeric parameter')
   })
 
   describe('routes/api/censustract', function() {
     it('returns array of all censustract summary objects')
-    it('returns array of censustract objects matching censustract number')
-    it('requires numeric parameters')
+    it('returns array of censustract object matching censustract number')
+    it('requires numeric parameter')
+  })
+
+  describe('routes/api/year', function() {
+    it('returns array of all year summary objects')
+    it('returns array of year object matching year number')
+    it('requires numeric parameter')
   })
 
   describe('routes/api/municipality', function() {
     it('returns array of all municipality summary objects')
-    it('returns array of municipality objects matching municipality string')
+    it('returns array of municipality object matching municipality string')
     it('string parameter is not case-sensitive')
   })
 })
