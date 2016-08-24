@@ -11,6 +11,7 @@ var app = express();
 var config = require('./_config');
 
 // db connection
+mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
   if (err) {
     console.log('Error connecting to the database', err);
