@@ -1,8 +1,22 @@
-var Data = {};
+var Fixture = {};
+
+// Add record to database collection
+Fixture.saveRecord = function(Model, record, done) {
+  new Model(record).save(function(err) {
+    if (err) done(err);
+    done();
+  });
+}
+
+// Drops collection from database
+Fixture.dropCollection = function(Model, done) {
+  Model.collection.drop();
+  done();
+}
 
 // Single address test data spanning five years of taxbills:
 // var address = require('./fixtures/test-models-data').address()
-Data.address = function() {
+Fixture.address = function() {
   return {
     streetaddress: '800 Market St, Chattanooga, TN 37402, USA',
     district:      '6',
@@ -14,4 +28,4 @@ Data.address = function() {
   }
 };
 
-module.exports = Data;
+module.exports = Fixture;

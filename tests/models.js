@@ -1,28 +1,26 @@
+// Tests database models for hamco-taxbills
 process.env.NODE_ENV = 'test';
 
 var chai = require('chai');
 var assert = chai.assert;
-var mongoose = require('mongoose');
 var app = require('../app');
-var data = require('./fixtures/test-models-data');
+var models = require('./fixtures/test-models');
 
 describe('Models', function() {
 
   describe('Address', function() {
+    // Add addresses collection to test database
     var Address = require('../models/address');
-    var address = data.address();
+    var address = models.address();
     
     beforeEach(function(done) {
-      new Address(address).save(function(err) {
-        if (err) done(err);
-        done();
-      });
+      models.saveRecord(Address, address, done);
     });
 
+    // Remove addresses collection from test database
     afterEach(function(done) {
-      Address.collection.drop();
-      done();
-    })
+      models.dropCollection(Address, done);
+    });
 
     it('schema', function(done) {
       Address.find({ streetaddress: address.streetaddress }, function(err, docs) {

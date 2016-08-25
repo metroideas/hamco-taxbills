@@ -1,38 +1,39 @@
+// Tests API functionality for hamco-taxbills
 process.env.NODE_ENV = 'test';
 
 var request = require('supertest');
 var assert = require('chai').assert;
+var models = require('./fixtures/test-models');
+var fixture = require('./fixtures/test-api');
 
 describe('API', function() {
+  // Setup and teardown server on each API test
   var server;
   
   beforeEach(function() {
-    var http = require('http');
-    var app = require('../app');
-    
-    server = http.createServer(app).listen(3000);
-  })
+    server = fixture.createServer();
+  });
 
   afterEach(function(done) {
     server.close(done);
-  })
-
+  });
+  
+  // Returns Address document by coordinates
   describe('GET address by coordinates', function() {
+    
+    // Add addresses collection to test database
     var Address = require('../models/address');
-    var address = require('./fixtures/test-models-data').address();
+    var address = models.address();
     var url = '/api/coordinates/' + address.coordinates.join('/');
 
     beforeEach(function(done) {
-      new Address(address).save(function(err) {
-        if (err) done(err);
-        done();
-      });
+      models.saveRecord(Address, address, done);
     });
 
+    // Remove addresses collection from test database
     afterEach(function(done) {
-      Address.collection.drop();
-      done();
-    })
+      models.dropCollection(Address, done);
+    });
 
     it('returns JSON response', function(done) {
       request(server)
@@ -49,7 +50,7 @@ describe('API', function() {
         });
     })
 
-    it('requires long-lat coordinates', function(done) {
+    it('requires long-lat coordinate parameters', function(done) {
       request(server)
         .get('/api/coordinates')
         .end(function(err, res) {
