@@ -10,6 +10,24 @@ var addressSchema = mongoose.Schema({
   taxbills:      Array
 });
 
+// Virtual setter methods
+// Address attribute fields convert to Summary _id
+addressSchema.virtual('countyDistrictId').get(function() {
+  return 'district-' + this.district;
+});
+
+addressSchema.virtual('censusTractId').get(function() {
+  return this.censustract;
+});
+
+addressSchema.virtual('zipcodeId').get(function() {
+  return this.zipcode;
+});
+
+addressSchema.virtual('municipalityId').get(function() {
+  return this.municipality.replace(' ', '-').toLowerCase();
+});
+
 var Address = mongoose.model('Address', addressSchema);
 
 module.exports = Address;

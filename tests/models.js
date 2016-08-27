@@ -44,7 +44,7 @@ describe('Models', function() {
       Address.find({ streetaddress: address.streetaddress }, function(err, docs) {
         if (err) done(err);
 
-        // .toJSON() avoids AssertionError on array comparison
+        // .toJSON() prevents AssertionError on array comparison
         var result = docs[0].toJSON();
 
         assert.equal(result.streetaddress, address.streetaddress);    
@@ -58,25 +58,34 @@ describe('Models', function() {
         done();
       });
     })
+
+    it('attribute fields convert to Summary _id', function(done) {
+      Address.find({ streetaddress: address.streetaddress }, function(err, docs) {
+        if (err) done(err);
+
+        var result = docs[0];
+
+        assert.equal(result.countyDistrictId, 'district-6');
+        assert.equal(result.censusTractId, '47065003100');
+        assert.equal(result.zipcodeId, '37402');
+        assert.equal(result.municipalityId, 'chattanooga');
+
+        result.municipality = 'East Ridge';
+        assert.equal(result.municipalityId, 'east-ridge', 'municipalityId slugs and lowercases');
+
+        done();
+      })
+    })
   })
 
-  describe('District', function() {
+  describe('Summary', function() {
     it('schema')
-  })
 
-  describe('CensusTract', function() {
-    it('schema')
-  })
+    it('maintains state')
 
-  describe('Year', function() {
-    it('schema')
-  })
-
-  describe('Zipcode', function() {
-    it('schema')
-  })
-
-  describe('Municipality', function() {
-    it('schema')
+    it('includes county districts')
+    it('includes census tracts')
+    it('includes zip codes')
+    it('includes municipalities')
   })
 });
