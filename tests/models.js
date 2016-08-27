@@ -10,8 +10,10 @@ describe('Models', function() {
 
   describe('Address', function() {
     // Add addresses collection to test database
-    var Address = require('../models/address');
-    var address = models.address();
+    var
+    Address = require('../models/address'),
+    address = models.address();
+    ;
     
     beforeEach(function(done) {
       models.saveRecord(Address, address, done);
@@ -79,13 +81,59 @@ describe('Models', function() {
   })
 
   describe('Summary', function() {
-    it('schema')
+    // Add summaries collection to test database
+    var
+    Summary      = require('../models/summary'),
+    summary      = models.summary(),
+    records      = models.records()
+    ;
 
-    it('maintains state')
+    beforeEach(function(done) {
+      models.insertMany(Summary, records, done);
+    });
 
-    it('includes county districts')
-    it('includes census tracts')
-    it('includes zip codes')
-    it('includes municipalities')
+    // Remove summaries collection from test database
+    afterEach(function(done) {
+      models.dropCollection(Summary, done);
+    });
+
+    it('schema', function(done) {
+      Summary.findById(summary._id, function(err, result) {
+        if (err) done(err);
+
+        assert.typeOf(result._id, 'string');
+        assert.typeOf(result.name, 'string');
+        assert.typeOf(result.type, 'string');
+        assert.typeOf(result.taxbills, 'array');
+
+        done();
+      })
+    })
+
+    it('maintains state', function(done) {
+      Summary.findById(summary._id, function(err, result) {
+        if (err) done(err);
+
+        assert.equal(result.name, summary.name);
+        assert.equal(result.type, summary.type);
+        assert.deepEqual(result.toJSON().taxbills, summary.taxbills);
+
+        done();
+      })
+    })
+
+    // Check type _id
+    models.summaries().forEach(function(summary) {
+      it(summary.type + ' type via _id', function(done) {
+        Summary.findById(summary._id, function(err, result) {
+          if (err) done(err);
+
+          assert.equal(result.type, summary.type);
+
+          done();
+        })
+      })
+    });
+
   })
 });

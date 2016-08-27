@@ -3,31 +3,30 @@ var mongoose = require('mongoose');
 // Summary objects share a common schema in which their _id attribute
 // is a hyphenated version of their Address attributes. 
 var summarySchema = mongoose.Schema({
-  // _id: String,
-  // name: String,   // Display name
-  // type: String,   // Redundant? Used for testing
-  // taxbills: Array,
-  // geo: Object     // Optional GeoJSON
-})
+  _id:  { type: String, required: true },
+  name: String,   // Display name
+  type: String, 
+  taxbills: Array
+});
 
 // Summary types:
-// County district
-// Municipality
-// ZIP code
-// Census tract
+// countywide
+// district
+// municipality
+// zipcode
+// censustract
 
 // All summary objects have an aggregate taxbills array that is the sum of all matching Address docs
-// Each taxbill has a year field, thus negating the need for a year summary type - An annual county overview
-// can be found in the summary doc where _id == 'district-0'
+// Each taxbill has a year field, thus negating the need for annual summary type
 
-// TO DO: Will need to write some conversion methods to ensure Address attributes match 
-// these _id formats
-// Additionally, will need to ensure the api/coordinate route pulls all the available data for a particular 
-// long-lat coordinate pair
+// Address has virtual getter methods that return a Summary _id
 
-// District _id
+// countywide:
 
-// - district-0 // All Hamilton County
+// - 'hamilton-county'
+
+// district:
+
 // - district-1
 // - district-2
 // - district-3
@@ -38,7 +37,7 @@ var summarySchema = mongoose.Schema({
 // - district-8
 // - district-9
 
-// Municipality _id
+// municipality:
 
 // - unincorporated
 // - chattanooga
@@ -52,7 +51,7 @@ var summarySchema = mongoose.Schema({
 // - ridgeside
 // - lakesite
 
-// ZIP code _id
+// zipcode:
 
 // - 37302
 // - 37308
@@ -81,9 +80,7 @@ var summarySchema = mongoose.Schema({
 // - 37377
 // - 37379
 
-// Census tract _id
-
-// - Use census tract ids from PostGIS
+// censustract: Use census tract ids from PostGIS
 
 var Summary = mongoose.model('Summary', summarySchema);
 

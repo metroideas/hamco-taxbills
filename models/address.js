@@ -10,7 +10,7 @@ var addressSchema = mongoose.Schema({
   taxbills:      Array
 });
 
-// Virtual setter methods
+// Virtual getter methods
 // Address attribute fields convert to Summary _id
 addressSchema.virtual('countyDistrictId').get(function() {
   return 'district-' + this.district;

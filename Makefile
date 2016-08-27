@@ -2,6 +2,11 @@ REPORTER = spec
 MOCHA    = ./node_modules/mocha/bin/mocha
 TEST_ENV = @NODE_ENV=test
 
+test:
+		$(TEST_ENV) $(MOCHA) tests/ \
+				--reporter $(REPORTER) \
+				--recursive
+
 test-app:
 		$(TEST_ENV) $(MOCHA) tests/app.js \
 				--reporter $(REPORTER) \
@@ -17,4 +22,4 @@ test-models:
 				--reporter $(REPORTER) \
 				--recursive
 
-.PHONY: test-app test-api test-models
+.PHONY: test test-app test-api test-models
