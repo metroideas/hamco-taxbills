@@ -8,24 +8,24 @@ var models = require('./fixtures/test-models');
 
 describe('Models', function() {
 
-  describe('Address', function() {
+  describe('Location', function() {
     // Add addresses collection to test database
     var
-    Address = require('../models/address'),
-    address = models.address();
+    Location = require('../models/location'),
+    location = models.location();
     ;
     
     beforeEach(function(done) {
-      models.saveRecord(Address, address, done);
+      models.saveRecord(Location, location, done);
     });
 
     // Remove addresses collection from test database
     afterEach(function(done) {
-      models.dropCollection(Address, done);
+      models.dropCollection(Location, done);
     });
 
     it('schema', function(done) {
-      Address.find({ streetaddress: address.streetaddress }, function(err, docs) {
+      Location.find({ streetaddress: location.streetaddress }, function(err, docs) {
         if (err) done(err);
 
         var result = docs[0];
@@ -43,26 +43,26 @@ describe('Models', function() {
     });
 
     it('maintains state', function(done) {
-      Address.find({ streetaddress: address.streetaddress }, function(err, docs) {
+      Location.find({ streetaddress: location.streetaddress }, function(err, docs) {
         if (err) done(err);
 
         // .toJSON() prevents AssertionError on array comparison
         var result = docs[0].toJSON();
 
-        assert.equal(result.streetaddress, address.streetaddress);    
-        assert.equal(result.district, address.district);
-        assert.equal(result.municipality, address.municipality);
-        assert.equal(result.censustract, address.censustract);
-        assert.equal(result.zipcode, address.zipcode);
-        assert.deepEqual(result.coordinates, address.coordinates);
-        assert.deepEqual(result.taxbills, address.taxbills);
+        assert.equal(result.streetaddress, location.streetaddress);    
+        assert.equal(result.district, location.district);
+        assert.equal(result.municipality, location.municipality);
+        assert.equal(result.censustract, location.censustract);
+        assert.equal(result.zipcode, location.zipcode);
+        assert.deepEqual(result.coordinates, location.coordinates);
+        assert.deepEqual(result.taxbills, location.taxbills);
 
         done();
       });
     })
 
     it('attribute fields convert to Summary _id', function(done) {
-      Address.find({ streetaddress: address.streetaddress }, function(err, docs) {
+      Location.find({ streetaddress: location.streetaddress }, function(err, docs) {
         if (err) done(err);
 
         var result = docs[0];

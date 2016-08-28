@@ -21,9 +21,8 @@ Fixture.dropCollection = function(Model, done) {
   done();
 }
 
-// Single address test data spanning five years of taxbills:
-// var address = require('./fixtures/test-models-data').address()
-Fixture.address = function() {
+// Single location test data spanning five years of taxbills:
+Fixture.location = function() {
   return {
     streetaddress: '800 Market St, Chattanooga, TN 37402, USA',
     district:      '6',
@@ -40,7 +39,7 @@ Fixture.summary = function() {
     _id:  'sample',
     name: 'Sample document',
     type: 'summary',
-    taxbills: this.address().taxbills
+    taxbills: this.location().taxbills
   }
 }
 
@@ -49,7 +48,7 @@ Fixture.county = function() {
     _id:  'hamilton-county',
     name: 'Hamilton County',
     type: 'countywide',
-    taxbills: this.address().taxbills
+    taxbills: this.location().taxbills
   }
 }
 
@@ -58,7 +57,7 @@ Fixture.district = function() {
     _id:  'district-6',
     name: '6th District',
     type: 'district',
-    taxbills: this.address().taxbills
+    taxbills: this.location().taxbills
   }
 }
 
@@ -67,7 +66,7 @@ Fixture.censustract = function() {
     _id:  '47065003100',
     name: 'Census Tract 31',
     type: 'censustract',
-    taxbills: this.address().taxbills
+    taxbills: this.location().taxbills
   }
 }
 
@@ -76,7 +75,7 @@ Fixture.zipcode = function() {
     _id:  '37402',
     name: '37402',
     type: 'zipcode',
-    taxbills: this.address().taxbills
+    taxbills: this.location().taxbills
   }
 }
 
@@ -85,7 +84,7 @@ Fixture.municipality = function() {
     _id:  'chattanooga',
     name: 'Chattanooga',
     type: 'municipality',
-    taxbills: this.address().taxbills
+    taxbills: this.location().taxbills
   }
 }
 

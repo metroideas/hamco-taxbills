@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 // Summary objects share a common schema in which their _id attribute
-// is a hyphenated version of their Address attributes. 
+// is a hyphenated version of their Location attributes. 
 var summarySchema = mongoose.Schema({
   _id:  { type: String, required: true },
   name: String,   // Display name
@@ -16,10 +16,10 @@ var summarySchema = mongoose.Schema({
 // zipcode
 // censustract
 
-// All summary objects have an aggregate taxbills array that is the sum of all matching Address docs
+// All summary objects have an aggregate taxbills array that is the sum of all matching Location docs
 // Each taxbill has a year field, thus negating the need for annual summary type
 
-// Address has virtual getter methods that return a Summary _id
+// Location has virtual getter methods that return a Summary _id
 
 // countywide:
 

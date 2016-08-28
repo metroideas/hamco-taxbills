@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var Address = require('../models/address');
+var Location = require('../models/location');
 
 // API routes
-router.get('/coordinates/:lng/:lat', findAddressByCoordinates);
+router.get('/coordinates/:lng/:lat', findLocationByCoordinates);
 router.get('/coordinates', badRequest);
 
 // Bad request handler for malformed API calls
@@ -11,13 +11,13 @@ function badRequest(req, res) {
   res.status(400).send('Bad Request');
 }
 
-// Look up Address object by coordinate parameters:
+// Look up Location object by coordinate parameters:
 // GET /api/coordinates/-85.308863/35.046772
-function findAddressByCoordinates(req, res) {
+function findLocationByCoordinates(req, res) {
   var lng = +req.params.lng;
   var lat = +req.params.lat;
   
-  Address.find({ coordinates: [lng, lat] }).exec(function(err, docs) {
+  Location.find({ coordinates: [lng, lat] }).exec(function(err, docs) {
     if (err) {
       res.json({'ERROR': err});
     }

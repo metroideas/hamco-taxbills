@@ -18,21 +18,21 @@ describe('API', function() {
     server.close(done);
   });
   
-  // Returns Address document by coordinates
-  describe('GET address by coordinates', function() {
+  // Returns Location document by coordinates
+  describe('GET location by coordinates', function() {
     
     // Add addresses collection to test database
-    var Address = require('../models/address');
-    var address = models.address();
-    var url = '/api/coordinates/' + address.coordinates.join('/');
+    var Location = require('../models/location');
+    var location = models.location();
+    var url = '/api/coordinates/' + location.coordinates.join('/');
 
     beforeEach(function(done) {
-      models.saveRecord(Address, address, done);
+      models.saveRecord(Location, location, done);
     });
 
     // Remove addresses collection from test database
     afterEach(function(done) {
-      models.dropCollection(Address, done);
+      models.dropCollection(Location, done);
     });
 
     it('returns JSON response', function(done) {
@@ -62,7 +62,7 @@ describe('API', function() {
     })
 
     it('returns empty array when coordinates not found', function(done) {
-      Address.collection.drop();
+      Location.collection.drop();
 
       request(server)
         .get(url)
