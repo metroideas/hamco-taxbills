@@ -7,9 +7,8 @@ var app = require('../app');
 var models = require('./fixtures/test-models');
 
 describe('Models', function() {
-
   describe('Location', function() {
-    // Add addresses collection to test database
+    // Add locations collection to test database
     var
     Location = require('../models/location'),
     location = models.location();
@@ -19,11 +18,12 @@ describe('Models', function() {
       models.saveRecord(Location, location, done);
     });
 
-    // Remove addresses collection from test database
+    // Remove locations collection from test database
     afterEach(function(done) {
       models.dropCollection(Location, done);
     });
 
+    // Tests
     it('schema', function(done) {
       Location.find({ streetaddress: location.streetaddress }, function(err, docs) {
         if (err) done(err);
@@ -60,24 +60,6 @@ describe('Models', function() {
         done();
       });
     })
-
-    it('attribute fields convert to Summary _id', function(done) {
-      Location.find({ streetaddress: location.streetaddress }, function(err, docs) {
-        if (err) done(err);
-
-        var result = docs[0];
-
-        assert.equal(result.countyDistrictId, 'district-6');
-        assert.equal(result.censusTractId, '47065003100');
-        assert.equal(result.zipcodeId, '37402');
-        assert.equal(result.municipalityId, 'chattanooga');
-
-        result.municipality = 'East Ridge';
-        assert.equal(result.municipalityId, 'east-ridge', 'municipalityId slugs and lowercases');
-
-        done();
-      })
-    })
   })
 
   describe('Summary', function() {
@@ -97,6 +79,7 @@ describe('Models', function() {
       models.dropCollection(Summary, done);
     });
 
+    // Tests
     it('schema', function(done) {
       Summary.findById(summary._id, function(err, result) {
         if (err) done(err);
@@ -134,6 +117,5 @@ describe('Models', function() {
         })
       })
     });
-
   })
 });

@@ -25,8 +25,8 @@ Fixture.dropCollection = function(Model, done) {
 Fixture.location = function() {
   return {
     streetaddress: '800 Market St, Chattanooga, TN 37402, USA',
-    district:      '6',
-    municipality:  'Chattanooga',
+    district:      'district-6',
+    municipality:  'chattanooga',
     censustract:   '47065003100',
     zipcode:       '37402',
     coordinates:   [-85.308863, 35.046772],
@@ -34,6 +34,7 @@ Fixture.location = function() {
   }
 };
 
+// Summary test docs
 Fixture.summary = function() {
   return {
     _id:  'sample',
@@ -88,9 +89,15 @@ Fixture.municipality = function() {
   }
 }
 
+// Summary test doc collections
 Fixture.records = function() {
   return [
-    this.summary(), this.county(), this.district(), this.censustract(), this.zipcode(), this.municipality()
+    this.summary(),
+    this.county(),
+    this.district(),
+    this.censustract(),
+    this.zipcode(),
+    this.municipality()
   ]
 }
 
@@ -101,3 +108,4 @@ Fixture.summaries = function() {
 }
 
 module.exports = Fixture;
+

@@ -11,19 +11,29 @@ function badRequest(req, res) {
   res.status(400).send('Bad Request');
 }
 
-// Look up Location object by coordinate parameters:
-// GET /api/coordinates/-85.308863/35.046772
+// Look up Location object by coordinate parameters
 function findLocationByCoordinates(req, res) {
   var lng = +req.params.lng;
   var lat = +req.params.lat;
+
+  // Sends '400: Bad Request' on non-numeric coordinate parameters
+  if (Number.isNaN(lng) || Number.isNaN(lat)) {
+    badRequest(req, res);
+    return ;
+  }
   
-  Location.find({ coordinates: [lng, lat] }).exec(function(err, docs) {
-    if (err) {
-      res.json({'ERROR': err});
-    }
-    
-    res.json(docs);  
-  });
+  // Location result populated with Summary docs
+  Location.findOne({ coordinates: [lng, lat] })
+    .populate([ 'district', 'municipality', 'zipcode', 'censustract', 'countywide' ])
+    .exec(function(err, result) {
+      if (err) res.json({'ERROR': err});
+
+      if (!result) {
+        res.status(200).send({});
+      } else {
+        res.json(result);  
+      }
+    });
 }
 
 module.exports = router;
