@@ -24,13 +24,22 @@ Fixture.dropCollection = function(Model, done) {
 // Single location test data spanning five years of taxbills:
 Fixture.location = function() {
   return {
-    streetaddress: '800 Market St, Chattanooga, TN 37402, USA',
-    district:      'district-6',
-    municipality:  'chattanooga',
-    censustract:   '47065003100',
-    zipcode:       '37402',
-    coordinates:   [-85.308863, 35.046772],
-    taxbills:      [{ "year": "2011", "assessment": 32850, "appraisal": 131400, "building": 124200, "land": 7200, "county": 908.3682, "municipality": 758.5065 },{ "year": "2012", "assessment": 32850, "appraisal": 131400, "building": 124200, "land": 7200, "county": 908.3682, "municipality": 758.5065 },{ "year": "2013", "assessment": 33500, "appraisal": 134000, "building": 126800, "land": 7200, "county": 926.342, "municipality": 773.515 },{ "year": "2014", "assessment": 33500, "appraisal": 134000, "building": 126800, "land": 7200, "county": 926.342, "municipality": 773.515 },{ "year": "2015", "assessment": 33500, "appraisal": 134000, "building": 126800, "land": 7200, "county": 926.342, "municipality": 773.515 }]
+    formattedAddress:    '800 Market St, Chattanooga, TN 37402, USA',
+    countyDistrict:      'county-district-6',
+    chattanoogaDistrict: 'chattanooga-district-7',
+    municipality:        'chattanooga',
+    censusTract:         '47065003100',
+    censusBlockGroup:    '470650031001',
+    censusBlock:         '470650031001082',
+    zipcode:             '37402',
+    coordinates:         [ -85.308863, 35.046772 ],
+    taxbills:            [
+      { year: "2011", assessment: 5354640, appraisal: 18730697, land: 2592300, building: 15654000, county: 148039, municipality: 123616 },
+      { year: "2012", assessment: 5682011, appraisal: 19612406, land: 2592300, building: 16282600, county: 157083, municipality: 131169 },
+      { year: "2013", assessment: 5916106, appraisal: 20033886, land: 3734600, building: 15595800, county: 163556, municipality: 136571 },
+      { year: "2014", assessment: 5951873, appraisal: 20153104, land: 3734600, building: 15595800, county: 164541, municipality: 137396 },
+      { year: "2015", assessment: 5941192, appraisal: 20141847, land: 3734600, building: 15595800, county: 164247, municipality: 137151 }
+    ]
   }
 };
 
@@ -53,20 +62,47 @@ Fixture.county = function() {
   }
 }
 
-Fixture.district = function() {
+Fixture.countyDistrict = function() {
   return {
-    _id:  'district-6',
-    name: '6th District',
-    type: 'district',
+    _id:  'county-district-6',
+    name: 'Hamilton County 6th District',
+    type: 'county-district',
     taxbills: this.location().taxbills
   }
 }
 
-Fixture.censustract = function() {
+Fixture.chattanoogaDistrict = function() {
+  return {
+    _id:  'chattanooga-district-7',
+    name: 'Chattanooga 7th District',
+    type: 'chattanooga-district',
+    taxbills: this.location().taxbills
+  }
+}
+
+Fixture.censusTract = function() {
   return {
     _id:  '47065003100',
     name: 'Census Tract 31',
-    type: 'censustract',
+    type: 'census-tract',
+    taxbills: this.location().taxbills
+  }
+}
+
+Fixture.censusBlockGroup = function() {
+  return {
+    _id:  '470650031001',
+    name: 'Block Group 1',
+    type: 'census-blockgroup',
+    taxbills: this.location().taxbills
+  }
+}
+
+Fixture.censusBlock = function() {
+  return {
+    _id:  '470650031001082',
+    name: 'Block 1082',
+    type: 'census-block',
     taxbills: this.location().taxbills
   }
 }
@@ -94,8 +130,11 @@ Fixture.records = function() {
   return [
     this.summary(),
     this.county(),
-    this.district(),
-    this.censustract(),
+    this.countyDistrict(),
+    this.chattanoogaDistrict(),
+    this.censusTract(),
+    this.censusBlockGroup(),
+    this.censusBlock(),
     this.zipcode(),
     this.municipality()
   ]

@@ -24,7 +24,16 @@ function findLocationByCoordinates(req, res) {
   
   // Location result populated with Summary docs
   Location.findOne({ coordinates: [lng, lat] })
-    .populate([ 'district', 'municipality', 'zipcode', 'censustract', 'countywide' ])
+    .populate([
+      'countyDistrict',
+      'chattanoogaDistrict',
+      'municipality',
+      'zipcode',
+      'censusTract',
+      'censusBlockGroup',
+      'censusBlock',
+      'countywide'
+    ])
     .exec(function(err, result) {
       if (err) res.json({'ERROR': err});
 

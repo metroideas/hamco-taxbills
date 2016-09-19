@@ -99,27 +99,16 @@ describe('Coordinates API', function() {
       .end(function(err, res) {
         if (err) done(err);
 
-        assert.isObject(res.body.district);
+        assert.isObject(res.body.countyDistrict);
+        assert.isObject(res.body.chattanoogaDistrict);
         assert.isObject(res.body.municipality);
-        assert.isObject(res.body.censustract);
+        assert.isObject(res.body.censusTract);
+        assert.isObject(res.body.censusBlockGroup);
+        assert.isObject(res.body.censusBlock);
         assert.isObject(res.body.zipcode);
 
         done();
       })
-  })
-
-  it('populated sub-docs match summary objects', function(done) {
-    request(server)
-      .get(url)
-      .end(function(err, res) {
-        if (err) done(err);
-
-        summaries.forEach(function(summary) {
-          assert.deepEqual(res.body[summary.type], summary);
-        });
-
-        done();
-    })
   })
 });
 
