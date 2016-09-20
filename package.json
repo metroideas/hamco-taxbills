@@ -17,6 +17,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.16.0",
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-mocha": "^3.0.1",
