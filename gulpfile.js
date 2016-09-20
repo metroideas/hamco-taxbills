@@ -7,6 +7,8 @@ var cleanCSS = require('gulp-clean-css')
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
 
 var paths = {
   img: 'public/img',
@@ -44,22 +46,13 @@ gulp.task('test', function() {
     .once('end', function() { process.exit(); })
 })
 
-// Nodemon + BrowserSync recipe:
-// https://github.com/sogko/gulp-recipes/blob/master/browser-sync-nodemon-expressjs/gulpfile.js
-var BROWSER_SYNC_RELOAD_DELAY = 500;
-
+// Server
 gulp.task('nodemon', function (cb) {
   var called = false;
   return nodemon({
-
-    // nodemon our expressjs server
     script: './bin/www',
-    // Development environment
     env: { 'NODE_ENV': 'development' },
-
     ignore: [ 'gulpfile.js', 'node_modules/' ],
-
-    // watch core server file(s) that require server restart on change
     watch: ['app.js']
   })
     .on('start', function onStart() {
@@ -67,8 +60,7 @@ gulp.task('nodemon', function (cb) {
       called = true;
     })
     .on('restart', function onRestart() {
-      // reload connected browsers after a slight delay
-      setTimeout(function reload() {
+      setTimeout(function reload() { // reload connected browsers after a slight delay
         browserSync.reload({
           stream: false
         });
@@ -76,6 +68,7 @@ gulp.task('nodemon', function (cb) {
     });
 });
 
+// BrowserSync
 gulp.task('browser-sync', ['nodemon'], function () {
   browserSync({
     proxy: 'http://localhost:3000',
@@ -85,13 +78,22 @@ gulp.task('browser-sync', ['nodemon'], function () {
   });
 });
 
-// Javascript
-gulp.task('js',  function () {
-  return gulp.src('public/**/*.js')
-    // do stuff to JavaScript files
-    //.pipe(uglify())
-    //.pipe(gulp.dest('...'));
-});
+// Javascripts uglified
+gulp.task('js', function(callback) {
+  pump([
+      gulp.src([
+        paths.js.concat('/*.js'),
+        '!'.concat(paths.js.concat('/*.min.js'))
+      ]),
+      sourcemaps.init(),
+      uglify(),
+      rename({ suffix: '.min' }),
+      sourcemaps.write('.'),
+      gulp.dest(paths.js)
+    ],
+    callback
+  )
+})
 
 // Sass files compiled with libsass and autoprefixer
 gulp.task('sass', function() {
@@ -126,7 +128,7 @@ gulp.task('bs-reload', function () {
 });
 
 gulp.task('serve', [ 'browser-sync' ], function() {
-  gulp.watch('public/**/*.js', ['js', browserSync.reload]);
+  gulp.watch(paths.js.concat('/*.js'), ['js', browserSync.reload]);
   gulp.watch(paths.css.concat('/*.css'), ['css']);
   gulp.watch(paths.sass.concat('/*.scss'), ['sass']);
   gulp.watch('views/**/*', ['bs-reload']);
