@@ -4,7 +4,7 @@ process.env.NODE_ENV = 'test';
 var chai = require('chai');
 var assert = chai.assert;
 var app = require('../app');
-var models = require('./fixtures/test-models');
+var models = require('./fixtures/fixture-test-models');
 
 describe('Models', function() {
   describe('Location', function() {

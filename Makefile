@@ -3,22 +3,22 @@ MOCHA    = ./node_modules/mocha/bin/mocha
 TEST_ENV = @NODE_ENV=test
 
 test:
-		$(TEST_ENV) $(MOCHA) tests/ \
+		$(TEST_ENV) $(MOCHA) test/ \
 				--reporter $(REPORTER) \
 				--recursive
 
 test-app:
-		$(TEST_ENV) $(MOCHA) tests/app.js \
+		$(TEST_ENV) $(MOCHA) test/test-app.js \
 				--reporter $(REPORTER) \
 				--recursive
 
 test-api:
-		$(TEST_ENV) $(MOCHA) tests/api.js \
+		$(TEST_ENV) $(MOCHA) test/test-api.js \
 				--reporter $(REPORTER) \
 				--recursive
 
 test-models:
-		$(TEST_ENV) $(MOCHA) tests/models.js \
+		$(TEST_ENV) $(MOCHA) test/test-models.js \
 				--reporter $(REPORTER) \
 				--recursive
 

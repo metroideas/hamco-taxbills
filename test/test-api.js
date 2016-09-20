@@ -3,8 +3,8 @@ process.env.NODE_ENV = 'test';
 
 var request = require('supertest');
 var assert = require('chai').assert;
-var models = require('./fixtures/test-models');
-var fixture = require('./fixtures/test-api');
+var models = require('./fixtures/fixture-test-models');
+var fixture = require('./fixtures/fixture-test-api');
 
 // Returns Location document by coordinates
 describe('Coordinates API', function() {
