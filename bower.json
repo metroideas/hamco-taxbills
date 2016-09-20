@@ -1,0 +1,23 @@
+{
+  "name": "hamco-taxbills",
+  "description": "",
+  "main": "",
+  "authors": [
+    "David Morton <michaeldavidmorton@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bourbon": "^4.2.7",
+    "neat": "^1.8.0",
+    "normalize-css": "normalize.css#^4.2.0"
+  }
+}

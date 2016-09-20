@@ -2,6 +2,18 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var nodemon = require('nodemon');
 var browserSync = require('browser-sync');
+var sass = require('gulp-sass');
+var cleanCSS = require('gulp-clean-css')
+var sourcemaps = require('gulp-sourcemaps');
+var rename = require('gulp-rename');
+var autoprefixer = require('gulp-autoprefixer');
+
+var paths = {
+  img: 'public/img',
+  js: 'public/js',
+  css: 'public/css',
+  sass: 'public/sass'
+}
 
 // Mocha tests
 gulp.task('test-app', function() {
@@ -65,21 +77,10 @@ gulp.task('nodemon', function (cb) {
 });
 
 gulp.task('browser-sync', ['nodemon'], function () {
-
-  // for more browser-sync config options: http://www.browsersync.io/docs/options/
   browserSync({
-
-    // informs browser-sync to proxy our expressjs app which would run at the following location
     proxy: 'http://localhost:3000',
-
-    // informs browser-sync to use the following port for the proxied app
-    // notice that the default port is 3000, which would clash with our expressjs
     port: 4000,
-
-    // skips network status check 
-    online: true,
-
-    // open the proxied app in chrome
+    online: true, // skips network status check 
     browser: ['safari']
   });
 });
@@ -92,11 +93,32 @@ gulp.task('js',  function () {
     //.pipe(gulp.dest('...'));
 });
 
-// CSS
-gulp.task('css', function () {
-  return gulp.src('public/**/*.css')
+// Sass files compiled with libsass and autoprefixer
+gulp.task('sass', function() {
+  return gulp.src(paths.sass.concat('/*.scss'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
+    .pipe(gulp.dest(paths.css))
     .pipe(browserSync.reload({ stream: true }));
 })
+
+// CSS minified and mapped
+gulp.task('css', [ 'sass' ], function () {
+  return gulp.src([,
+      paths.css.concat('/*.css'),
+      '!'.concat(paths.css.concat('/*.min.css'))
+    ])
+    .pipe(sourcemaps.init())
+    .pipe(cleanCSS())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(paths.css))
+    .pipe(browserSync.reload({ stream: true }));
+})
+
 
 // BrowserSync reload triggered by changes to public/**/*
 gulp.task('bs-reload', function () {
@@ -104,9 +126,10 @@ gulp.task('bs-reload', function () {
 });
 
 gulp.task('serve', [ 'browser-sync' ], function() {
-  gulp.watch('public/**/*.js',   ['js', browserSync.reload]);
-  gulp.watch('public/**/*.css',  ['css']);
-  gulp.watch('views/**/*',       ['bs-reload']);
+  gulp.watch('public/**/*.js', ['js', browserSync.reload]);
+  gulp.watch(paths.css.concat('/*.css'), ['css']);
+  gulp.watch(paths.sass.concat('/*.scss'), ['sass']);
+  gulp.watch('views/**/*', ['bs-reload']);
 });
 
 gulp.task('default', [ 'test', 'serve' ])

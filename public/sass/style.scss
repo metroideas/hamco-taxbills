@@ -1,0 +1,14 @@
+$bower_components = "../../bower_components"
+
+@import "#{bower_components}/normalize-css/normalize.css";
+/*! Metro Ideas Project | metroideas.org */
+@import "#{bower_components}/bourbon/app/assets/stylesheets/bourbon";
+@import "#{bower_components}/neat/app/assets/stylesheets/neat";
+
+$base-font-family: "Avenir Next", $helvetica;
+
+body {
+  font-family: $base-font-family;
+  font-size: 18px;
+  padding: 1em;
+}
