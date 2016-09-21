@@ -99,13 +99,13 @@ describe('Coordinates API', function() {
       .end(function(err, res) {
         if (err) done(err);
 
-        assert.isObject(res.body.countyDistrict);
-        assert.isObject(res.body.chattanoogaDistrict);
-        assert.isObject(res.body.municipality);
-        assert.isObject(res.body.censusTract);
-        assert.isObject(res.body.censusBlockGroup);
-        assert.isObject(res.body.censusBlock);
-        assert.isObject(res.body.zipcode);
+        assert.deepEqual(res.body.countyDistrict, models.countyDistrict());
+        assert.deepEqual(res.body.chattanoogaDistrict, models.chattanoogaDistrict());
+        assert.deepEqual(res.body.municipality, models.municipality());
+        assert.deepEqual(res.body.censusTract, models.censusTract());
+        assert.deepEqual(res.body.censusBlockGroup, models.censusBlockGroup());
+        assert.deepEqual(res.body.censusBlock, models.censusBlock());
+        assert.deepEqual(res.body.zipcode, models.zipcode());
 
         done();
       })

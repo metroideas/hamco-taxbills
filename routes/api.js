@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Location = require('../models/location');
+var Summary = require('../models/summary');
 
 // API routes
 router.get('/coordinates/:lng/:lat', findLocationByCoordinates);
