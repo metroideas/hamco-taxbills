@@ -9,6 +9,7 @@ var rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
 var uglify = require('gulp-uglify');
 var pump = require('pump');
+var shell = require('gulp-shell');
 
 var paths = {
   img: 'public/img',
@@ -16,6 +17,14 @@ var paths = {
   css: 'public/css',
   sass: 'public/sass'
 }
+
+// Setup: bower install
+gulp.task('setup', function() {
+  return gulp.src('', {read: false})
+    .pipe(shell([
+      'bower install'
+    ]))
+})
 
 // Mocha tests
 gulp.task('test-app', function() {
@@ -134,5 +143,5 @@ gulp.task('serve', [ 'browser-sync' ], function() {
   gulp.watch('views/**/*', ['bs-reload']);
 });
 
-gulp.task('default', [ 'test', 'serve' ])
+gulp.task('default', [ 'setup', 'serve' ]);
 

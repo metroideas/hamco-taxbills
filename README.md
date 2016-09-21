@@ -1,8 +1,8 @@
 # HamCo Taxbills
 
-Setup and serve: ``` npm install && gulp```
-
-Run tests: ```gulp test```
-
-Launch server: ```gulp serve```
+```
+git clone https://github.com/metroideas/hamco-taxbills.git  
+cd hamco-taxbills && npm install
+gulp
+```
 
