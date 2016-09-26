@@ -1,6 +1,7 @@
 var express = require('express');
 var coordinates = require('../controllers/coordinates');
 var location = require('../controllers/location');
+var Summary = require('../models/summary');
 var router = express.Router();
 
 // redirect shorthand with flash message
@@ -10,7 +11,11 @@ function redirect(req, res, message) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  Summary.find({ _id: 'hamilton-county' }, function(err, data) {
+    if (err) return err;
+
+    res.render('index', { title: 'Hamilton County', data: data });
+  })
 });
 
 // Geocode input address, call coordinates api and render view

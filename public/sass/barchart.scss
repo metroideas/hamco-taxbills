@@ -1,0 +1,23 @@
+.chart {
+  text,
+  .axis {
+    font-size: 12px;
+  }
+  
+
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #6d6e70;
+    shape-rendering: crispEdges;
+  }
+
+  .axis path {
+    display: none;
+  }
+
+  rect {
+    fill: #6d6e70;
+  }
+}

@@ -1,0 +1,15 @@
+.chart text,
+.chart .axis {
+  font-size: 12px; }
+
+.chart .axis path,
+.chart .axis line {
+  fill: none;
+  stroke: #6d6e70;
+  shape-rendering: crispEdges; }
+
+.chart .axis path {
+  display: none; }
+
+.chart rect {
+  fill: #6d6e70; }

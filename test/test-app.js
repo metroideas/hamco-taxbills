@@ -38,6 +38,10 @@ describe('App', function() {
           done();
         })
     });
+
+    it('loads initial data')
+    
+    it('page maintains state')
   });
 
   describe('POST', function() {

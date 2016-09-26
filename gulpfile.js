@@ -74,7 +74,8 @@ gulp.task('nodemon', function (cb) {
     watch: [
       'app.js',
       'routes/**/*.js',
-      'models/**/*.js'
+      'models/**/*.js',
+      'controllers/**/*.js'
     ]
   })
     .on('start', function onStart() {
