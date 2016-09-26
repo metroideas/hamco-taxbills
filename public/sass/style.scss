@@ -31,7 +31,7 @@ $blue: #0060ae;
 $default-border-radius: 3px;
 $default-input-height: $base-font-size * 2.5;
 
-// Base
+// _type.scss
 body {
   font-family: $base-font-family;
   font-size: $base-font-size;
@@ -65,7 +65,7 @@ small {
   font-size: $small-font-size;
 }
 
-// Form
+// _form.scss
 form {
   @include margin(1em null);
   @include padding(1em null);
@@ -126,7 +126,7 @@ form p:first-child {
   }
 }
 
-// Layout
+// _layout.scss
 main {
   @include padding(1em)
   @include outer-container($xlarge);
@@ -152,7 +152,7 @@ article#about {
 
 @media (min-width: $medium) {
   main {
-    @include padding(3em 0);
+    @include padding(3em 1em);
   }
 
   main header {

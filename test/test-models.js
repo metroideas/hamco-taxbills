@@ -11,7 +11,7 @@ describe('Models', function() {
     // Add locations collection to test database
     var
     Location = require('../models/location'),
-    location = models.location();
+    location = models.location()
     ;
     
     beforeEach(function(done) {

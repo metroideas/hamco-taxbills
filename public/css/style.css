@@ -116,7 +116,7 @@ article#about > p {
 
 @media (min-width: 768px) {
   main {
-    padding: 3em 0; }
+    padding: 3em 1em; }
   main header {
     text-align: center; }
   article {

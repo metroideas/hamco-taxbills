@@ -1,6 +1,8 @@
 process.env.NODE_ENV = 'test';
 
 var request = require('supertest');
+var assert = require('chai').assert;
+var models = require('./fixtures/fixture-test-models');
 
 describe('App', function() {
   var server;
@@ -16,8 +18,8 @@ describe('App', function() {
     server.close(done);
   })
   
-  describe('routes/index', function() {
-    it('handles valid GET request', function(done) {
+  describe('GET', function() {
+    it('handles valid request', function(done) {
       request(server)
         .get('/')
         .expect(200)
@@ -25,9 +27,9 @@ describe('App', function() {
           if (err) return done(err);
           done();
         })
-    })
+    });
 
-    it('handles invalid request', function(done) {
+    it('returns 404 on invalid request', function(done) {
       request(server)
         .get('/invalid/path')
         .expect(404)
@@ -35,6 +37,26 @@ describe('App', function() {
           if (err) return done(err);
           done();
         })
+    });
+  });
+
+  describe('POST', function() {
+    var location = models.location();
+
+    it('accepts form data', function(done) {  
+      request(server)
+        .post('/')
+        .send({ userAddress: location.formattedAddress })
+        .set('Accept', /json/)
+        .end(function(err, res) {
+          if (err) return done(err);
+
+          assert.equal(res.request._data.userAddress, location.formattedAddress);
+
+          done();
+        })
     })
+
+    it('form requires nonblank input')
   })
 })

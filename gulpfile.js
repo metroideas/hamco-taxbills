@@ -41,6 +41,13 @@ gulp.task('test-api', function() {
     .once('end', function() { process.exit(); })
 })
 
+gulp.task('test-controllers', function() {
+  return gulp.src([ 'test/test-controllers.js' ], { read: false })
+    .pipe(mocha({ reporter: 'spec' }))
+    .once('error', function() { process.exit(1); })
+    .once('end', function() { process.exit(); })
+})
+
 gulp.task('test-models', function() {
   return gulp.src([ 'test/test-models.js' ], { read: false })
     .pipe(mocha({ reporter: 'spec' }))
@@ -56,13 +63,19 @@ gulp.task('test', function() {
 })
 
 // Server
+var BROWSER_SYNC_RELOAD_DELAY = 500;
+
 gulp.task('nodemon', function (cb) {
   var called = false;
   return nodemon({
     script: './bin/www',
     env: { 'NODE_ENV': 'development' },
     ignore: [ 'gulpfile.js', 'node_modules/' ],
-    watch: ['app.js']
+    watch: [
+      'app.js',
+      'routes/**/*.js',
+      'models/**/*.js'
+    ]
   })
     .on('start', function onStart() {
       if (!called) { cb(); }
