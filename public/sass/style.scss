@@ -93,7 +93,7 @@ button {
   height: $default-input-height;
 }
 
-input[type='text'] {
+input[type="text"] {
   display: block;
   width: 100%;
   padding-left: 0.5em;
@@ -126,6 +126,11 @@ form p:first-child {
   }
 }
 
+// Checkbox inputs
+input[type="checkbox"] {
+  height: auto;
+}
+
 // _layout.scss
 main {
   @include padding(1em)
@@ -147,6 +152,12 @@ main header {
 article#about {
   &  > p {
     color: $gray  
+  }
+}
+
+article#graphic {
+  p {
+    @include margin(0)
   }
 }
 

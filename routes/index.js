@@ -11,10 +11,10 @@ function redirect(req, res, message) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Summary.find({ _id: 'hamilton-county' }, function(err, data) {
+  Summary.find({ _id: 'hamilton-county' }, function(err, summary) {
     if (err) return err;
 
-    res.render('index', { title: 'Hamilton County', data: data });
+    res.render('index', { title: 'Hamilton County', data: summary, subhead: 'Median appraisal in Hamilton County' });
   })
 });
 
@@ -42,7 +42,11 @@ router.post('/', function(req, res, next) {
 
       if (!loc) redirect(req, res, 'No Location data for that address');
 
-      res.render('index', { title: loc.formattedAddress.slice(0,-5), data: JSON.stringify(loc) })
+      var title = loc.formattedAddress.slice(0,-5);
+      var subhead = "Annual appraisals for ".concat(title);
+      var data = JSON.stringify(loc);
+
+      res.render('index', { title: title, subhead: subhead, data: data, location: true })
     })
   })
 })

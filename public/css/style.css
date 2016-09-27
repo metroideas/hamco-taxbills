@@ -67,7 +67,7 @@ button {
   border: none;
   height: 45px; }
 
-input[type='text'] {
+input[type="text"] {
   display: block;
   width: 100%;
   padding-left: 0.5em;
@@ -92,6 +92,9 @@ form p:first-child {
     left: 0;
     font-size: 14.4px; }
 
+input[type="checkbox"] {
+  height: auto; }
+
 main {
   padding: 1em;
   max-width: 1280px;
@@ -113,6 +116,9 @@ main header {
 
 article#about > p {
   color: #6d6e70; }
+
+article#graphic p {
+  margin: 0; }
 
 @media (min-width: 768px) {
   main {

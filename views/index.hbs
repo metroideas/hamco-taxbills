@@ -19,7 +19,28 @@
 </article>
 
 <article id="graphic">
-  <h2>Median appraisal in Hamilton County</h2>
+  <h2>{{ subhead }}</h2>
+  {{#location}}
+    <p>Comparison:</p>
+    
+    <p>
+      <label><input type="checkbox" id="countywide" checked> Countywide</label>
+    </p>
+    <p>
+      <label><input type="checkbox" id="municipality"> Municipality</label>
+    </p>
+    <p>
+      <label><input type="checkbox" id="district"> District</label>
+    </p>
+    <p>
+      <label><input type="checkbox" id="census-tract"> Census tract</label>
+    </p>
+    <p>
+      <label><input type="checkbox" id="zipcode"> Zipcode</label>
+    </p>
+    
+  {{/location}}
+
   <section class="chart">
     {{!-- Dynamic svg --}}
   </section>
