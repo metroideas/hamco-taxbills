@@ -31,6 +31,7 @@ describe('Models', function() {
         var result = docs[0];
 
         assert.typeOf(result.formattedAddress, 'string');
+        assert.typeOf(result.place_id, 'string');
         assert.typeOf(result.countyDistrict, 'string');
         assert.typeOf(result.chattanoogaDistrict, 'string');
         assert.typeOf(result.municipality, 'string');
@@ -52,7 +53,8 @@ describe('Models', function() {
         // .toJSON() prevents AssertionError on array comparison
         var result = docs[0].toJSON();
 
-        assert.equal(result.inputAddress, location.inputAddress);    
+        assert.equal(result.inputAddress, location.inputAddress);
+        assert.equal(result.place_id, location.place_id);
         assert.equal(result.countyDistrict, location.countyDistrict);
         assert.equal(result.chattanoogaDistrict, location.chattanoogaDistrict);
         assert.equal(result.municipality, location.municipality);

@@ -7,7 +7,7 @@ var models = require('./fixtures/fixture-test-models');
 var fixture = require('./fixtures/fixture-test-api');
 
 // Returns Location document by coordinates
-describe('Coordinates API', function() {
+describe('Location API', function() {
   var server;
   
   // Add model data to test database
@@ -15,7 +15,7 @@ describe('Coordinates API', function() {
   var Summary   = require('../models/summary');
   var location  = models.location();
   var summaries = models.summaries();
-  var url       = '/api/coordinates/' + location.coordinates.join('/');
+  var url       = '/api/' + location.place_id;
 
   beforeEach(function() {
     server = fixture.createServer();
@@ -57,20 +57,9 @@ describe('Coordinates API', function() {
       });
   })
 
-  it('requires long-lat coordinate parameters', function(done) {
+  it('requires :id parameter', function(done) {
     request(server)
-      .get('/api/coordinates')
-      .end(function(err, res) {
-        if (err) done(err);
-
-        assert.equal(res.status, 400);
-        done();
-      })
-  })
-
-  it('requires numeric coordinate parameters', function(done) {
-    request(server)
-      .get('/api/coordinates/foo/bar')
+      .get('/api/')
       .end(function(err, res) {
         if (err) done(err);
 
@@ -80,7 +69,7 @@ describe('Coordinates API', function() {
   })
 
   it('returns empty object when Location not found', function(done) {
-    Location.collection.drop();
+    var url = '/api/foobar'
 
     request(server)
       .get(url)

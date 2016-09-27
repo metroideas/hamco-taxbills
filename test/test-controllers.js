@@ -1,28 +1,28 @@
 process.env.NODE_ENV = 'test';
 
 var assert = require('chai').assert;
-var coordinates = require('../controllers/coordinates');
+var geocoder = require('../controllers/geocoder');
 var location = require('../controllers/location');
 var models = require('./fixtures/fixture-test-models');
 
-describe('Coordinates controller', function() {
+describe('Geocoder controller', function() {
   var loc = models.location();
   
-  it('gets coordinates of input address', function(done) {
-    coordinates(loc.formattedAddress, function(err, coordinates) {
+  it('gets place_id of input address', function(done) {
+    geocoder(loc.formattedAddress, function(err, geo) {
       if (err) return done(err);
-      
-      assert.deepEqual(coordinates, loc.coordinates);
+
+      assert.deepEqual(geo, loc.place_id);
 
       done();
     })  
   })
 
   it('returns null on invalid input', function(done) {
-    coordinates('Invalid address input', function(err, coordinates) {
+    geocoder('Invalid address input', function(err, geo) {
       if (err) return done(err);
 
-      assert.equal(coordinates, null);
+      assert.equal(geo, null);
 
       done();
     })
@@ -45,7 +45,7 @@ describe('Location controller', function() {
   afterEach(function(done)  { models.dropCollection(Summary, done); });
 
   it('Retrieves populated location object', function(done) {
-    location(loc.coordinates, function(err, location) {
+    location(loc.place_id, function(err, location) {
       if (err) return done(err);
 
       assert.equal(location.formattedAddress, loc.formattedAddress);

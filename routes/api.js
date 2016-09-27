@@ -4,8 +4,8 @@ var Location = require('../models/location');
 var Summary = require('../models/summary');
 
 // API routes
-router.get('/coordinates/:lng/:lat', findLocationByCoordinates);
-router.get('/coordinates', badRequest);
+router.get('/:id', findLocationById);
+router.get('/', badRequest);
 
 // Bad request handler for malformed API calls
 function badRequest(req, res) {
@@ -13,18 +13,17 @@ function badRequest(req, res) {
 }
 
 // Look up Location object by coordinate parameters
-function findLocationByCoordinates(req, res) {
-  var lng = +req.params.lng;
-  var lat = +req.params.lat;
+function findLocationById(req, res) {
+  var place = req.params.id;
 
   // Sends '400: Bad Request' on non-numeric coordinate parameters
-  if (Number.isNaN(lng) || Number.isNaN(lat)) {
+  if (!place) {
     badRequest(req, res);
     return ;
   }
   
   // Location result populated with Summary docs
-  Location.findOne({ coordinates: [lng, lat] })
+  Location.findOne({ place_id: place })
     .populate([
       'countyDistrict',
       'chattanoogaDistrict',

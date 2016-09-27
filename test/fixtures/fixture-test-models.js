@@ -25,6 +25,7 @@ Fixture.dropCollection = function(Model, done) {
 Fixture.location = function() {
   return {
     formattedAddress:    '800 Market St, Chattanooga, TN 37402, USA',
+    place_id:            'ChIJ18Rgr3xeYIgRp9HNeDUZpbk',
     countyDistrict:      'county-district-6',
     chattanoogaDistrict: 'chattanooga-district-7',
     municipality:        'chattanooga',
