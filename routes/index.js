@@ -18,6 +18,36 @@ router.get('/', function(req, res, next) {
   })
 });
 
+// Samples
+router.get('/druid', function(req, res, next) {
+  location('Eig1MTIgRHJ1aWQgTG4sIENoYXR0YW5vb2dhLCBUTiAzNzQwNSwgVVNB', function(err, loc) {
+    if (err) redirect(req, res, '');
+
+    if (!loc) redirect(req, res, 'No Location data for that address');
+
+    var title = loc.formattedAddress.slice(0,-5);
+    var subhead = "Annual appraisals for ".concat(title);
+    var data = JSON.stringify(loc);
+
+    var labels = [];
+
+      for (var key in loc) {
+        switch (key) {
+          case 'county':
+          case 'countyDistrict':
+          case 'censusTract':
+          case 'municipality':
+          case 'zipcode':
+            labels.push({ id: key, name: loc[key].name})
+          default: ;
+        }
+      }
+
+
+    res.render('index', { title: title, subhead: subhead, data: data, location: true, labels: labels.reverse() })
+  })
+})
+
 // Geocode input address, call location api and render view
 router.post('/', function(req, res, next) {
   var userAddress = req.body.userAddress;
@@ -45,8 +75,21 @@ router.post('/', function(req, res, next) {
       var title = loc.formattedAddress.slice(0,-5);
       var subhead = "Annual appraisals for ".concat(title);
       var data = JSON.stringify(loc);
+      var labels = [];
 
-      res.render('index', { title: title, subhead: subhead, data: data, location: true })
+      for (var key in loc) {
+        switch (key) {
+          case 'county':
+          case 'countyDistrict':
+          case 'censusTract':
+          case 'municipality':
+          case 'zipcode':
+            labels.push({ id: key, name: loc[key].name})
+          default: ;
+        }
+      }
+
+      res.render('index', { title: title, subhead: subhead, data: data, location: true, labels: labels.reverse() })
     })
   })
 })

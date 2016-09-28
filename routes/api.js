@@ -32,7 +32,7 @@ function findLocationById(req, res) {
       'censusTract',
       'censusBlockGroup',
       'censusBlock',
-      'countywide'
+      'county'
     ])
     .exec(function(err, result) {
       if (err) res.json({'ERROR': err});

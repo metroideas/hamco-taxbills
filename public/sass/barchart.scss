@@ -4,8 +4,6 @@
     font-size: 12px;
   }
   
-
-
   .axis path,
   .axis line {
     fill: none;
@@ -19,5 +17,27 @@
 
   rect {
     fill: #6d6e70;
+  }
+
+  path.summary {
+    fill: none;
+    stroke: black;
+    stroke-width: 1.5px;
+  }
+
+  path.county {
+    // stroke: #df2027;
+  }
+  path.municipality {
+    // stroke: #7cadbb;
+  }
+  path.countyDistrict {
+    // stroke: #8dbd45;
+  }
+  path.censusTract {
+    // stroke: #1d8376;
+  }
+  path.zipcode {
+    // stroke: #56678d;
   }
 }

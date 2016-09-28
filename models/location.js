@@ -10,7 +10,7 @@ var locationSchema = mongoose.Schema({
   censusBlockGroup:    { ref: 'Summary', type: String },
   censusBlock:         { ref: 'Summary', type: String },
   zipcode:             { ref: 'Summary', type: String },
-  countywide:          { ref: 'Summary', type: String, default: 'hamilton-county' },
+  county:              { ref: 'Summary', type: String },
   coordinates:         Array,
   taxbills:            Array
 });

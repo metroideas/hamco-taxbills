@@ -13,7 +13,8 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   line-height: 1.3;
   font-family: "Avenir Next", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-weight: 600; }
@@ -28,8 +29,14 @@ a {
 a:visited {
   color: #1e3567; }
 
+strong {
+  font-weight: 600; }
+
 small {
   font-size: 14.4px; }
+
+ul {
+  padding-left: 1em; }
 
 form {
   margin-top: 1em;
@@ -120,6 +127,9 @@ article#about > p {
 article#graphic p {
   margin: 0; }
 
+article#graphic #tooltip {
+  display: none; }
+
 @media (min-width: 768px) {
   main {
     padding: 3em 1em; }
@@ -140,4 +150,17 @@ article#graphic p {
       margin-right: 2.35765%;
       width: 31.76157%; }
       article#summaries section:last-child {
-        margin-right: 0; } }
+        margin-right: 0; }
+  article#graphic #tooltip {
+    position: absolute;
+    display: block;
+    padding: 1em;
+    width: 300px;
+    border-radius: 3px;
+    border: 1px solid #6d6e70;
+    background-color: white; }
+    article#graphic #tooltip h4 {
+      margin: 0; } }
+
+.hidden {
+  display: none !important; }

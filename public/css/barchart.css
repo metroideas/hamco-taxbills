@@ -13,3 +13,8 @@
 
 .chart rect {
   fill: #6d6e70; }
+
+.chart path.summary {
+  fill: none;
+  stroke: black;
+  stroke-width: 1.5px; }

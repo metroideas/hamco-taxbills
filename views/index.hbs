@@ -14,35 +14,37 @@
   </p>
 </form>
 
-<article id="map" style="height:50vh;width:100%;background-color:#6d6e70">
+{{!-- <article id="map" style="height:50vh;width:100%;background-color:#6d6e70">
   <p>&nbsp;</p>
-</article>
+</article> --}}
 
 <article id="graphic">
   <h2>{{ subhead }}</h2>
   {{#location}}
-    <p>Comparison:</p>
+    <p><strong>Compare to median value</strong></p>
     
-    <p>
-      <label><input type="checkbox" id="countywide" checked> Countywide</label>
-    </p>
-    <p>
-      <label><input type="checkbox" id="municipality"> Municipality</label>
-    </p>
-    <p>
-      <label><input type="checkbox" id="district"> District</label>
-    </p>
-    <p>
-      <label><input type="checkbox" id="census-tract"> Census tract</label>
-    </p>
-    <p>
-      <label><input type="checkbox" id="zipcode"> Zipcode</label>
-    </p>
-    
+    {{#labels}}
+    <p><label><input type="checkbox" id={{ id }}> {{ name }}</label></p>
+    {{/labels}}
+
+    <div class="hidden" id="tooltip">
+      <h4 id="year"></h4>
+      <ul>
+        <li>
+          Appraisal: <span id="appraisal-amount"></span>
+        </li>
+        <li>
+          County taxes: <span id="county-amount"></span>
+        </li>
+        <li>
+          Municipal taxes: <span id="municipality-amount"></span>
+        </li>
+      </ul>
+    </div> 
   {{/location}}
 
   <section class="chart">
-    {{!-- Dynamic svg --}}
+    {{!-- Placeholder image --}}
   </section>
 </article>
 
