@@ -1,0 +1,16 @@
+#map {
+  position: relative;
+  max-width: 100%;
+  margin: 1em auto; }
+
+.attribution {
+  font-size: 11px;
+  text-align: right; }
+
+@media (min-width: 768px) {
+  .attribution {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 3px 10px 10px;
+    background: rgba(255, 255, 255, 0.6); } }

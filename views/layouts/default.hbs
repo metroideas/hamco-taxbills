@@ -6,7 +6,10 @@
   <title>{{ title }}</title>
   <link rel="stylesheet" href="/css/style.min.css">
   <link rel="stylesheet" href="/css/barchart.min.css">
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" href="/css/hamco.min.css">
+  <script src="//d3js.org/d3.v4.min.js"></script>
+  <script src="//d3js.org/d3-tile.v0.0.min.js"></script>
+  <script src="//d3js.org/topojson.v1.min.js"></script>
   
 </head>
 <body>
@@ -20,9 +23,8 @@
     &nbsp;
   </footer>
 
-  <script>
-  var data = {{{ data }}};
-  </script>
+  <script>var data = {{{ data }}};</script>
   <script src="/js/chart.min.js"></script>
+  <script src="/js/hamco.min.js"></script>
 </body>
 </html>

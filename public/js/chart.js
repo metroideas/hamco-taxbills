@@ -1,7 +1,7 @@
 (function(window, document, d3, data) {
   if (d3) {
-    window.onload = draw;
-    window.onresize = draw;  
+    window.onload = draw();
+    window.onresize = draw();  
   }
   
   function draw() {
@@ -22,8 +22,6 @@
     width     = +container.offsetWidth - margin.width(), // Chart width
     height    = Math.round(width * (ratio.height / ratio.width) - margin.height()) // Chart height
     ;
-
-    console.log(data)
 
     /*
       Some Location API results will have fewer years of tax data than expected. 

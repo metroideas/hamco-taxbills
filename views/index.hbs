@@ -3,7 +3,7 @@
   <p>Lead sentence providing more page details</p>
 </header>
 
-<form action="/" method="post">
+<form action="/" method="post" id="address-lookup">
   <p>
     <label for="address-field">Street address</label>
     <input name="userAddress" id="address-field" type="text" placeholder="625 Georgia Ave. Chattanooga, TN" required>
@@ -14,9 +14,11 @@
   </p>
 </form>
 
-{{!-- <article id="map" style="height:50vh;width:100%;background-color:#6d6e70">
-  <p>&nbsp;</p>
-</article> --}}
+<article id="map">
+  <figure class="fallback" style="height:100vh">
+    {{!-- Fallback image --}}
+  </figure>
+</article>
 
 <article id="graphic">
   <h2>{{ subhead }}</h2>
