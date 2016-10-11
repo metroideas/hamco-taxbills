@@ -23,7 +23,7 @@ function findLocationById(req, res) {
   }
   
   // Location result populated with Summary docs
-  Location.findOne({ place_id: place })
+  Location.findOne({ googlePlaceID: place })
     .populate([
       'countyDistrict',
       'chattanoogaDistrict',

@@ -14,7 +14,9 @@ router.get('/', function(req, res, next) {
   Summary.find({ _id: 'hamilton-county' }, function(err, summary) {
     if (err) return err;
 
-    res.render('index', { title: 'Hamilton County', data: summary, subhead: 'Median appraisal in Hamilton County' });
+    var data = JSON.stringify(summary[0]);
+
+    res.render('index', { title: 'Hamilton County', data: data, subhead: 'Median appraisal in Hamilton County' });
   })
 });
 
@@ -42,7 +44,6 @@ router.get('/druid', function(req, res, next) {
           default: ;
         }
       }
-
 
     res.render('index', { title: title, subhead: subhead, data: data, location: true, labels: labels.reverse() })
   })
@@ -72,8 +73,8 @@ router.post('/', function(req, res, next) {
 
       if (!loc) redirect(req, res, 'No Location data for that address');
 
-      var title = loc.formattedAddress.slice(0,-5);
-      var subhead = "Annual appraisals for ".concat(title);
+      // var title = geo.title // Pull 
+      // var subhead = "Annual appraisals for ".concat(title);
       var data = JSON.stringify(loc);
       var labels = [];
 
@@ -89,7 +90,7 @@ router.post('/', function(req, res, next) {
         }
       }
 
-      res.render('index', { title: title, subhead: subhead, data: data, location: true, labels: labels.reverse() })
+      res.render('index', { /*title: title, subhead: subhead,*/ data: data, location: true, labels: labels.reverse() })
     })
   })
 })

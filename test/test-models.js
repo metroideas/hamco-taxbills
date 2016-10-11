@@ -25,13 +25,12 @@ describe('Models', function() {
 
     // Tests
     it('schema', function(done) {
-      Location.find({ formattedAddress: location.formattedAddress }, function(err, docs) {
+      Location.find({ inputAddress: location.inputAddress }, function(err, docs) {
         if (err) done(err);
 
         var result = docs[0];
 
-        assert.typeOf(result.formattedAddress, 'string');
-        assert.typeOf(result.place_id, 'string');
+        assert.typeOf(result.googlePlaceID, 'string');
         assert.typeOf(result.countyDistrict, 'string');
         assert.typeOf(result.chattanoogaDistrict, 'string');
         assert.typeOf(result.municipality, 'string');
@@ -47,14 +46,14 @@ describe('Models', function() {
     });
 
     it('maintains state', function(done) {
-      Location.find({ formattedAddress: location.formattedAddress }, function(err, docs) {
+      Location.find({ inputAddress: location.inputAddress }, function(err, docs) {
         if (err) done(err);
 
         // .toJSON() prevents AssertionError on array comparison
         var result = docs[0].toJSON();
 
         assert.equal(result.inputAddress, location.inputAddress);
-        assert.equal(result.place_id, location.place_id);
+        assert.equal(result.googlePlaceID, location.googlePlaceID);
         assert.equal(result.countyDistrict, location.countyDistrict);
         assert.equal(result.chattanoogaDistrict, location.chattanoogaDistrict);
         assert.equal(result.municipality, location.municipality);

@@ -23,6 +23,8 @@
     height    = Math.round(width * (ratio.height / ratio.width) - margin.height()) // Chart height
     ;
 
+    console.log(data)
+
     /*
       Some Location API results will have fewer years of tax data than expected. 
       Placeholder data is added for those instances to ensure consistent comparisons and layout
@@ -52,7 +54,7 @@
     // Check summary taxbills for highest appraisal value
     var max = function() {
       function compare(data, start) {
-        var m = d3.max(data, function(d) { return d.appraisal; });
+        var m = d3.max(data, function(d) { return d.appraisal.median; });
         return (start > m) ? start : m;
       }
       // Initial
@@ -160,7 +162,7 @@
         .attr("x", 0)
         .attr("y", 0)
         .attr("height", yearScale.bandwidth())
-        .attr("width", function(d) { return appraisalScale(d.appraisal); })
+        .attr("width", function(d) { return appraisalScale(d.appraisal.median); })
 
     } else {
       // Horizontal orientation
@@ -170,8 +172,8 @@
 
       bars.append("rect")
         .attr("x", 0)
-        .attr("y", function(d) { return appraisalScale(d.appraisal); })
-        .attr("height", function(d) { return height - appraisalScale(d.appraisal); })
+        .attr("y", function(d) { return appraisalScale(d.appraisal.median); })
+        .attr("height", function(d) { return height - appraisalScale(d.appraisal.median); })
         .attr("width", yearScale.bandwidth())
         .call(hover); // Mouseover tooltip on horizontal orientation only
     }
@@ -190,9 +192,9 @@
           var dollar = d3.format("$,");
           
           tooltip.select("#year").html(d.year);
-          tooltip.select("#appraisal-amount").html(dollar(d.appraisal));
-          tooltip.select("#county-amount").html(dollar(d.county));
-          tooltip.select("#municipality-amount").html(dollar(d.municipality));
+          tooltip.select("#appraisal-amount").html(dollar(d.appraisal.median));
+          tooltip.select("#county-amount").html(dollar(d.county.median));
+          tooltip.select("#municipality-amount").html(dollar(d.municipality.median));
 
           var matrix = this.getCTM()
               .translate(+ this.getAttribute("cx"), + this.getAttribute("cy"));
@@ -242,8 +244,8 @@
           var type = this.id;
           // d3 line generator
           var line = d3.line()
-            .x(function(d) { return (mobile) ? appraisalScale(d.appraisal) : yearScale(d.year); })
-            .y(function(d) { return (mobile) ? yearScale(d.year) : appraisalScale(d.appraisal); });
+            .x(function(d) { return (mobile) ? appraisalScale(d.appraisal.median) : yearScale(d.year); })
+            .y(function(d) { return (mobile) ? yearScale(d.year) : appraisalScale(d.appraisal.median); });
 
 
           svg.append("path").attr("class", "summary " + type)

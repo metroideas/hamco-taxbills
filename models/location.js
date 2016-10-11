@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var locationSchema = mongoose.Schema({
-  formattedAddress:    String,
-  place_id:            String,
+  inputAddress:        String,
+  googlePlaceID:       String,
   countyDistrict:      { ref: 'Summary', type: String },
   chattanoogaDistrict: { ref: 'Summary', type: String },
   municipality:        { ref: 'Summary', type: String },

@@ -8,11 +8,11 @@ var models = require('./fixtures/fixture-test-models');
 describe('Geocoder controller', function() {
   var loc = models.location();
   
-  it('gets place_id of input address', function(done) {
-    geocoder(loc.formattedAddress, function(err, geo) {
+  it('gets googlePlaceID of input address', function(done) {
+    geocoder(loc.inputAddress, function(err, geo) {
       if (err) return done(err);
 
-      assert.deepEqual(geo, loc.place_id);
+      assert.deepEqual(geo, loc.googlePlaceID);
 
       done();
     })  
@@ -45,10 +45,10 @@ describe('Location controller', function() {
   afterEach(function(done)  { models.dropCollection(Summary, done); });
 
   it('Retrieves populated location object', function(done) {
-    location(loc.place_id, function(err, location) {
+    location(loc.googlePlaceID, function(err, location) {
       if (err) return done(err);
 
-      assert.equal(location.formattedAddress, loc.formattedAddress);
+      assert.equal(location.inputAddress, loc.inputAddress);
       assert.deepEqual(location.taxbills, loc.taxbills);
       assert.equal(location.municipality._id, loc.municipality);
       assert.equal(location.zipcode._id, loc.zipcode);

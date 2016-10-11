@@ -15,7 +15,7 @@ describe('Location API', function() {
   var Summary   = require('../models/summary');
   var location  = models.location();
   var summaries = models.summaries();
-  var url       = '/api/' + location.place_id;
+  var url       = '/api/' + location.googlePlaceID;
 
   beforeEach(function() {
     server = fixture.createServer();

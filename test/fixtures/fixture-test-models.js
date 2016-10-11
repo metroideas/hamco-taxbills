@@ -24,22 +24,23 @@ Fixture.dropCollection = function(Model, done) {
 // Single location test data spanning five years of taxbills:
 Fixture.location = function() {
   return {
-    formattedAddress:    '800 Market St, Chattanooga, TN 37402, USA',
-    place_id:            'ChIJ18Rgr3xeYIgRp9HNeDUZpbk',
-    countyDistrict:      'county-district-6',
-    chattanoogaDistrict: 'chattanooga-district-7',
-    municipality:        'chattanooga',
-    censusTract:         '47065003100',
-    censusBlockGroup:    '470650031001',
-    censusBlock:         '470650031001082',
-    zipcode:             '37402',
-    coordinates:         [ -85.308863, 35.046772 ],
+    inputAddress:       "800 MARKET ST, Chattanooga, TN",
+    googlePlaceID:      "ChIJ18Rgr3xeYIgRp9HNeDUZpbk",
+    coordinates:        [ -85.308863, 35.046772 ],
+    zipcode:             "37402",
+    censusTract:         "47065003100",
+    censusBlock:         "470650031001082",
+    censusBlockGroup:    "470650031001",
+    county:              "hamilton-county",
+    countyDistrict:      "county-district-6",
+    chattanoogaDistrict: "chattanooga-district-7",
+    municipality:        "chattanooga",
     taxbills:            [
-      { year: "2011", assessment: 5354640, appraisal: 18730697, land: 2592300, building: 15654000, county: 148039, municipality: 123616 },
-      { year: "2012", assessment: 5682011, appraisal: 19612406, land: 2592300, building: 16282600, county: 157083, municipality: 131169 },
-      { year: "2013", assessment: 5916106, appraisal: 20033886, land: 3734600, building: 15595800, county: 163556, municipality: 136571 },
-      { year: "2014", assessment: 5951873, appraisal: 20153104, land: 3734600, building: 15595800, county: 164541, municipality: 137396 },
-      { year: "2015", assessment: 5941192, appraisal: 20141847, land: 3734600, building: 15595800, county: 164247, municipality: 137151 }
+      { year: 2012, assessment: { median: 106375, total: 5682011 }, appraisal: { median: 416500, total: 19612406 }, land: { median: 66900, total: 2592300 }, building: { median: 383300, total: 16282600 }, county: { median: 2941, total: 157083 }, municipality: { median: 2456, total: 131169 } },
+      { year: 2013, assessment: { median: 107000, total: 5916106 }, appraisal: { median: 397000, total: 20033886 }, land: { median: 70000, total: 3734600 }, building: { median: 370600, total: 15595800 }, county: { median: 2959, total: 163556 }, municipality: { median: 2471, total: 136571 } },
+      { year: 2014, assessment: { median: 107000, total: 5951873 }, appraisal: { median: 397000, total: 20153104 }, land: { median: 70000, total: 3734600 }, building: { median: 370600, total: 15595800 }, county: { median: 2959, total: 164541 }, municipality: { median: 2471, total: 137396 } },
+      { year: 2015, assessment: { median: 106375, total: 5941192 }, appraisal: { median: 392500, total: 20141847 }, land: { median: 70000, total: 3734600 }, building: { median: 370600, total: 15595800 }, county: { median: 2941, total: 164247 }, municipality: { median: 2456, total: 137151 } },
+      { year: 2016, assessment: { median: 109000, total: 5925214 }, appraisal: { median: 397999, total: 20086936 }, land: { median: null, total: null }, building: { median: null, total: null }, county: { median: 3014, total: 163806 }, municipality: { median: 2517, total: 136779 } }
     ]
   }
 };
