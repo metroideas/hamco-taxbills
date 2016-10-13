@@ -25,6 +25,7 @@ Fixture.dropCollection = function(Model, done) {
 Fixture.location = function() {
   return {
     inputAddress:       "800 MARKET ST, Chattanooga, TN",
+    name:               "800 Market St, Chattanooga, TN 37402",
     googlePlaceID:      "ChIJ18Rgr3xeYIgRp9HNeDUZpbk",
     coordinates:        [ -85.308863, 35.046772 ],
     zipcode:             "37402",

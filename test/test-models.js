@@ -31,6 +31,7 @@ describe('Models', function() {
         var result = docs[0];
 
         assert.typeOf(result.googlePlaceID, 'string');
+        assert.typeOf(result.name, 'string');
         assert.typeOf(result.countyDistrict, 'string');
         assert.typeOf(result.chattanoogaDistrict, 'string');
         assert.typeOf(result.municipality, 'string');
@@ -53,6 +54,7 @@ describe('Models', function() {
         var result = docs[0].toJSON();
 
         assert.equal(result.inputAddress, location.inputAddress);
+        assert.equal(result.name, location.name);
         assert.equal(result.googlePlaceID, location.googlePlaceID);
         assert.equal(result.countyDistrict, location.countyDistrict);
         assert.equal(result.chattanoogaDistrict, location.chattanoogaDistrict);

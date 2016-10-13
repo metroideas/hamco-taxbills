@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var locationSchema = mongoose.Schema({
   inputAddress:        String,
   googlePlaceID:       String,
+  name:                String,
   countyDistrict:      { ref: 'Summary', type: String },
   chattanoogaDistrict: { ref: 'Summary', type: String },
   municipality:        { ref: 'Summary', type: String },
