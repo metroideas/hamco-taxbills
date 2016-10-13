@@ -139,6 +139,8 @@ var graphic = window.graphic || {};
     var cont  = d3.select("#comparison-container")
       .classed("hidden", false);
 
+    cont.selectAll("p").remove();
+
     var inputs = cont.selectAll("p")
         .data(data.summaries)
       .enter().append("p");
