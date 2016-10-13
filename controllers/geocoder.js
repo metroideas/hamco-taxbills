@@ -6,7 +6,7 @@ module.exports = function(userAddress, cb) {
     if (err) return cb(err);
     
     var results;    
-    var place = null;
+    var geo = null;
     
     if (results = data.results[0]) {
       place = results.place_id

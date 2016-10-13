@@ -1,11 +1,6 @@
-(function(window, document, d3) {
+var map = window.map || {};
 
-if (d3) {
-  window.onload = map;
-  window.onresize = map;  
-}
-
-function map() {
+(function(map) {
   var
   pi         = Math.PI,
   tau        = pi * 2,
@@ -19,6 +14,8 @@ function map() {
   ;
 
   container.innerHTML = "";
+
+  window.onload = draw();
 
   var projection = d3.geoMercator()
     .scale(1 / tau)
@@ -34,16 +31,10 @@ function map() {
     .scaleExtent([minZoom, maxZoom])
     .on("zoom", zoomed);
 
-  var svg = d3.select("#map").append("svg")
+  var svg = d3.select(container).append("svg")
     .attr("width", width)
     .attr("height", height)
     ;
-
-  var defs = svg.append("defs");
-  
-  var border = defs.append("path")
-    .attr("id", "border")
-    .attr("fill", "none");
 
   var mapTiles = svg.append("g")
     .attr("id", "map-tiles");
@@ -55,28 +46,37 @@ function map() {
     .attr("class", "attribution")
     .html('<a href="http://metroideas.org">Metro Ideas Project</a> | <a href="https://www.mapbox.com/about/maps/" target="_blank">Mapbox</a> | © <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>')
 
-  d3.json("/js/hamco.topo.json", function(err, topology) {
-    if (err) throw err;
+  map.update = function(data) {
+    // Delete old marker
+    // Pan and/or zoom map to coordinates
+    // Place new marker
+    // console.log(data.coordinates);
+  }
 
-    var data   = topojson.feature(topology, topology.objects.blockgroups);
-    var bounds = d3.geoBounds(data);
-    var center = projection([ ((bounds[0][0] + bounds[1][0]) / 2), ((bounds[0][1] + bounds[1][1]) / 2) ]);
-    
-    blockgroups.selectAll("path.blockgroup")
-        .data(data.features)
-      .enter().append("path")
-        .attr("class", "blockgroup")
-        .attr("d", path)
-        .attr("fill", "none")
-        ;
+  function draw() {
+    d3.json("/js/hamco.topo.json", function(err, topology) {
+      if (err) throw err;
 
-    svg
-      .call(zoom)
-      .call(zoom.transform, d3.zoomIdentity
-        .translate(width / 2, height / 2)
-        .scale(minZoom)
-        .translate(-center[0], -center[1])); 
-  });
+      var data   = topojson.feature(topology, topology.objects.blockgroups);
+      var bounds = d3.geoBounds(data);
+      var center = projection([ ((bounds[0][0] + bounds[1][0]) / 2), ((bounds[0][1] + bounds[1][1]) / 2) ]);
+      
+      blockgroups.selectAll("path.blockgroup")
+          .data(data.features)
+        .enter().append("path")
+          .attr("class", "blockgroup")
+          .attr("d", path)
+          .attr("fill", "none")
+          ;
+
+      svg
+        .call(zoom)
+        .call(zoom.transform, d3.zoomIdentity
+          .translate(width / 2, height / 2)
+          .scale(minZoom)
+          .translate(-center[0], -center[1])); 
+    });
+  }
 
   function zoomed() {
     var transform = d3.event.transform;
@@ -85,9 +85,6 @@ function map() {
       .scale(transform.k)
       .translate([transform.x, transform.y])
       ();
-
-    border
-      .attr("transform", transform);
 
     blockgroups.selectAll("path.blockgroup")
       .attr("transform", transform)
@@ -129,7 +126,5 @@ function map() {
 
     return "translate(" + r(translate[0] * scale) + "," + r(translate[1] * scale) + ") scale(" + k + ")";
   }
-}
 
-
-})(window, document, d3)
+})(map)

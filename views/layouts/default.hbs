@@ -23,8 +23,22 @@
     &nbsp;
   </footer>
 
-  <script>var data = {{{ data }}};</script>
-  <script src="/js/chart.min.js"></script>
+ 
+
+  <script src="/js/graphic.min.js"></script>
   <script src="/js/hamco.min.js"></script>
+  <script src="/js/mip.min.js"></script>
+  <script>
+  var data = {{{ data }}};
+  var graphic = window.graphic;
+  
+  graphic.data(data)
+
+  window.onload = graphic.draw;
+  window.onresize = graphic.draw;
+  </script>
+
+  
+  
 </body>
 </html>

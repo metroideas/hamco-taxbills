@@ -22,13 +22,10 @@
 
 <article id="graphic">
   <h2>{{ subhead }}</h2>
-  {{#location}}
-    <p><strong>Compare</strong></p>
+    <div class="hidden" id="comparison-container">
+      {{!-- Checkboxes --}}
+    </div>
     
-    {{#labels}}
-    <p><label><input type="checkbox" id={{ id }}> {{ name }}</label></p>
-    {{/labels}}
-
     <div class="hidden" id="tooltip">
       <h4 id="year"></h4>
       <ul>
@@ -43,7 +40,7 @@
         </li>
       </ul>
     </div> 
-  {{/location}}
+
 
   <section class="chart">
     {{!-- Placeholder image --}}

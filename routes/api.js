@@ -1,15 +1,45 @@
 var express = require('express');
 var router = express.Router();
+var geocoder = require('../controllers/geocoder');
 var Location = require('../models/location');
 var Summary = require('../models/summary');
 
 // API routes
+router.get('/address/:address', findLocationByAddress);
 router.get('/:id', findLocationById);
 router.get('/', badRequest);
 
 // Bad request handler for malformed API calls
 function badRequest(req, res) {
   res.status(400).send('Bad Request');
+}
+
+// Call Google geocoder before local database
+function findLocationByAddress(req, res) {
+  var address = req.params.address;
+
+  if (!address) {
+    badRequest(req, res);
+    return ;
+  }
+
+
+  geocoder(address, function(err, geo) {
+    if (err) {
+      // Geocoder error
+      badRequest(req, res)
+      return ;
+    }
+
+    if (!geo) {
+      // No response from geocoder
+      badRequest(req, res)
+      return ;
+    }
+
+    req.params.id = geo;
+    findLocationById(req, res);
+  })
 }
 
 // Look up Location object by coordinate parameters
