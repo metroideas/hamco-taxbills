@@ -191,7 +191,7 @@ article#graphic {
     @include margin(0)
   }
   
-  #tooltip {
+  #barchart-tooltip {
     display: none;
   }
 }
@@ -217,7 +217,7 @@ article#graphic {
     }
   }
 
-  article#graphic #tooltip {
+  article#graphic #barchart-tooltip {
     position: absolute;
     display: block;
     padding: 1em;

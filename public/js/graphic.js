@@ -223,9 +223,56 @@ var graphic = window.graphic || {};
         .attr("y", function(d) { return appraisal(median(d)); })
         .attr("height", function(d) { return height - appraisal(median(d)); })
         .attr("width", years.bandwidth())
-        //.call(hover) // Mouseover tooltip on horizontal orientation only
+        .call(hover) // Mouseover tooltip on horizontal orientation only
         ;
     }
+  }
+
+  function hover(bar) {
+    bar
+      .on("mouseover", function(d) {
+        var tooltip = d3.select("#barchart-tooltip").classed("hidden", false);
+        var dollar = d3.format("$,");
+        
+        tooltip.select("#year").html(d.year);
+        tooltip.select("#appraisal-amount").html(dollar(d.appraisal.median));
+        tooltip.select("#county-amount").html(dollar(d.county.median));
+        tooltip.select("#municipality-amount").html(dollar(d.municipality.median));
+
+        var matrix = this.getCTM()
+            .translate(+ this.getAttribute("cx"), + this.getAttribute("cy"));
+
+        tooltip.style("left", function() {
+          var
+          w      = +tooltip.style("width").slice(0, -2),
+          left   = d3.event.pageX - w / 2,
+          adjust
+          ;
+
+          // Slide tooltips away from edges
+          if (matrix.e <= width * .25) {
+            adjust = (width - matrix.e) / width;
+            left += adjust * w / 2;
+          } else if (matrix.e >= width * .75) {
+            adjust = 1 - (width - matrix.e) / width;
+            left -= adjust * w / 2;
+          }
+
+          return left + "px";
+        });
+
+        tooltip.style("top", function() {
+          var h   = +tooltip.style("height").slice(0, -2);
+          var top = d3.event.pageY;
+          
+          top = (matrix.f >= height * .5) ? top - h * 1.5 : top + 15;
+          
+          return top + "px";
+        });
+      })
+      .on("mouseout", function() {
+        d3.select("#barchart-tooltip").classed("hidden", true);
+      })
   }
 
   
