@@ -34,7 +34,7 @@ var map = window.map || {};
 
     // Create popup, add to marker
 
-    new mapboxgl.Marker(marker, { offset: [-25, -25] })
+    new mapboxgl.Marker(marker)
       .setLngLat(location.coordinates)
       .addTo(this);
   }

@@ -69,6 +69,12 @@ form {
       form button {
         width: 100%; } }
 
+#form-error-message {
+  color: #df2027; }
+  @media (min-width: 768px) {
+    #form-error-message {
+      text-align: center; } }
+
 input,
 button {
   border: none;
