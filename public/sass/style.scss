@@ -27,6 +27,7 @@ $white: #ffffff;
 $gray: #6d6e70;
 $navy: #1e3567;
 $blue: #0060ae;
+$red: #df2027;
 
 // Form elements
 $default-border-radius: 3px;
@@ -96,6 +97,14 @@ form {
   }
 }
 
+#form-error-message {
+  color: $red;
+
+  @media (min-width: $medium) {
+    text-align: center;
+  }
+}
+
 input,
 button {
   border: none;
@@ -156,6 +165,19 @@ main header {
   & > p {
     color: $gray; 
   }
+}
+
+article#map {
+  height: 80vh;
+}
+
+#marker {
+  background-color: $blue;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 3px solid $white;
+  cursor: pointer;
 }
 
 article#about {

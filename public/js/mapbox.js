@@ -7,12 +7,10 @@ var map = window.map || {};
 
   map = new mapboxgl.Map({
       container: 'map',
-      // center: [ -85.158, 35.219 ],
-      fitBounds: bounds,
-      // minZoom: 10,
-      // zoom: 10,
       style: 'mapbox://styles/mdavidmorton/ciu5nfp4500eg2ipgdjbmflkw'
   });
+
+  map.fitBounds(bounds);
 
   map.addControl(new mapboxgl.NavigationControl());
 
@@ -34,7 +32,9 @@ var map = window.map || {};
     var marker = document.createElement('div');
     marker.id = 'marker';
 
-    new mapboxgl.Marker(marker, { offset: [-25, -25] })
+    // Create popup, add to marker
+
+    new mapboxgl.Marker(marker)
       .setLngLat(location.coordinates)
       .addTo(this);
   }
