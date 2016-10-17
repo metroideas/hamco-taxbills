@@ -16,9 +16,12 @@ var graphic = window.graphic || {};
           return ;
         }
 
+        
         map.update(loc);
         graphic.update(loc);
       })
+
+      form.elements['address-field'].value = "";
     }
   });
 
