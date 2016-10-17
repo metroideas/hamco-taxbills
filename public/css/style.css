@@ -121,6 +121,17 @@ main header {
   main header > p {
     color: #6d6e70; }
 
+article#map {
+  height: 80vh; }
+
+#marker {
+  background-color: steelblue;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 3px solid white;
+  cursor: pointer; }
+
 article#about > p {
   color: #6d6e70; }
 

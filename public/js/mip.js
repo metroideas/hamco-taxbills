@@ -8,6 +8,9 @@ var graphic = window.graphic || {};
     event.preventDefault();
 
     var address = form.elements['address-field'].value;
+    var errorField = document.getElementById('form-error-message');
+
+    errorField.innerHTML = "";
 
     if (address) {
       locationLookup(address, function(err, loc) {
@@ -16,9 +19,12 @@ var graphic = window.graphic || {};
           return ;
         }
 
-        
-        map.update(loc);
-        graphic.update(loc);
+        if (loc.taxbills != undefined) {
+          map.update(loc);
+          graphic.update(loc); 
+        } else {
+          errorField.innerHTML = "Address not found. Please try again."
+        }
       })
 
       form.elements['address-field'].value = "";

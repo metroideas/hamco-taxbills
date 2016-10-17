@@ -3,21 +3,22 @@
   <p>Lead sentence providing more page details</p>
 </header>
 
+<p id="form-error-message" style="color:red;text-align:center">
+  {{!--  --}}
+</p>
+
 <form action="/" method="post" id="address-lookup">
   <p>
     <label for="address-field">Street address</label>
     <input name="userAddress" id="address-field" type="text" placeholder="625 Georgia Ave. Chattanooga, TN" required>
   </p>
-
   <p>
     <button>Find my address</button>
   </p>
 </form>
 
-<article id="map" style="max-width:100%;height:80vh;">
-  {{!-- <figure class="fallback" style="height:100vh"> --}}
-    {{!-- Fallback image --}}
-  {{!-- </figure> --}}
+<article id="map">
+  {{!-- Placeholder img --}}
 </article>
 
 <article id="graphic">
