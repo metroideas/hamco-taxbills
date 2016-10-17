@@ -144,7 +144,7 @@ article#about > p {
 article#graphic p {
   margin: 0; }
 
-article#graphic #tooltip {
+article#graphic #barchart-tooltip {
   display: none; }
 
 @media (min-width: 768px) {
@@ -168,7 +168,7 @@ article#graphic #tooltip {
       width: 31.76157%; }
       article#summaries section:last-child {
         margin-right: 0; }
-  article#graphic #tooltip {
+  article#graphic #barchart-tooltip {
     position: absolute;
     display: block;
     padding: 1em;
@@ -176,7 +176,7 @@ article#graphic #tooltip {
     border-radius: 3px;
     border: 1px solid #6d6e70;
     background-color: white; }
-    article#graphic #tooltip h4 {
+    article#graphic #barchart-tooltip h4 {
       margin: 0; } }
 
 .hidden {
