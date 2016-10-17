@@ -23,7 +23,7 @@ var graphic = window.graphic || {};
           map.update(loc);
           graphic.update(loc); 
         } else {
-          errorField.innerHTML = "Address not found. Please try again."
+          errorField.innerHTML = "Address not found. Please try another search."
         }
       })
 

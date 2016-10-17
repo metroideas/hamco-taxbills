@@ -69,6 +69,12 @@ form {
       form button {
         width: 100%; } }
 
+#form-error-message {
+  color: #df2027; }
+  @media (min-width: 768px) {
+    #form-error-message {
+      text-align: center; } }
+
 input,
 button {
   border: none;
@@ -125,11 +131,11 @@ article#map {
   height: 80vh; }
 
 #marker {
-  background-color: steelblue;
+  background-color: #0060ae;
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  border: 3px solid white;
+  border: 3px solid #ffffff;
   cursor: pointer; }
 
 article#about > p {
