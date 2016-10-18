@@ -12,9 +12,36 @@
   display: none; }
 
 .chart rect {
-  fill: #6d6e70; }
+  fill: #4689c2; }
 
 .chart path.summary {
   fill: none;
   stroke: black;
-  stroke-width: 1.5px; }
+  stroke-width: 3px; }
+
+.chart path.summary.county {
+  stroke: #8dbd45; }
+
+.chart path.summary.municipality {
+  stroke: #df2027; }
+
+.chart path.summary.county-district {
+  stroke: #1d8376; }
+
+.chart path.summary.zipcode {
+  stroke: #a4968d; }
+
+#comparison-container p svg line {
+  stroke-width: 2; }
+
+#comparison-container p.county svg line {
+  stroke: #8dbd45; }
+
+#comparison-container p.municipality svg line {
+  stroke: #df2027; }
+
+#comparison-container p.county-district svg line {
+  stroke: #1d8376; }
+
+#comparison-container p.zipcode svg line {
+  stroke: #a4968d; }

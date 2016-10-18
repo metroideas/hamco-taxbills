@@ -36,6 +36,11 @@ var graphic = window.graphic || {};
     var years     = scales.year;
     var axis      = scales.axis;
     
+    // Update graphic title
+    if (data.name != "Hamilton County") {
+      document.querySelector("#barchart-title").innerHTML = data.name;  
+    }
+
     // Initial setup
     chart.innerHTML = "";
     
@@ -143,13 +148,20 @@ var graphic = window.graphic || {};
 
     var inputs = cont.selectAll("p")
         .data(data.summaries)
-      .enter().append("p");
+      .enter().append("p")
+        .attr("class", function(d) { return d.type; });
 
     var labels = inputs.append("label");
 
     labels.html(function(d) {
       var checkbox = "<input type='checkbox' data-select='" +  d.type + "'> ";
-      return checkbox + d.name;
+      
+      // Summary legend
+      var svg = "<svg width='24' height='18'>" +
+        "<line x1='2' x2='20' y1='12' y2='12' />" + 
+        "</svg>";
+      
+      return checkbox + svg + d.name;
     });
 
     d3.selectAll("input[type='checkbox']").on("change", function() {
