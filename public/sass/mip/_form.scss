@@ -1,0 +1,73 @@
+// _form.scss
+form {
+  @include margin(1em null);
+  @include padding(1em null);
+
+  @media (min-width:$medium) {
+    @include outer-container($small);
+
+    p:first-child {
+      @include span-columns(8);
+    }
+
+    p:last-child {
+      @include span-columns(4);
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+#form-error-message {
+  color: $red;
+
+  @media (min-width: $medium) {
+    text-align: center;
+  }
+}
+
+input,
+button {
+  border: none;
+  height: $default-input-height;
+}
+
+input[type="text"] {
+  display: block;
+  width: 100%;
+  padding-left: 0.5em;
+  border-radius: $default-border-radius;
+  border: 1px solid $gray;
+}
+
+button {
+  border-radius: $default-border-radius;
+  border: 1px solid $blue;
+  background-color: $blue;
+  color: $white;
+  cursor: pointer;
+
+  &:active {
+    border-color: $navy;
+    background-color: $navy;
+  }
+}
+
+// Input group
+form p:first-child {
+  position: relative;
+
+  label {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    font-size: $small-font-size;
+  }
+}
+
+// Checkbox inputs
+input[type="checkbox"] {
+  height: auto;
+}

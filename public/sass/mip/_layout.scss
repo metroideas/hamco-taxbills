@@ -1,0 +1,56 @@
+// _layout.scss
+main {
+  @include padding(1em)
+  @include outer-container($xlarge);
+}
+
+main header {
+  @include margin(1em null);
+  
+  & > * {
+    @include margin(0 null);
+  }
+  
+  & > p {
+    color: $gray; 
+  }
+}
+
+article#map {
+  position: relative;
+  height: 80vh;
+}
+
+article#about {
+  &  > p {
+    color: $gray  
+  }
+}
+
+article#graphic {
+  p {
+    @include margin(0)
+  }
+}
+
+@media (min-width: $medium) {
+  main {
+    @include padding(3em 1em);
+  }
+
+  main header {
+    text-align: center;
+  }
+
+  article {
+    @include margin(2em null);
+  }
+  
+  article#summaries {
+    @include row;
+
+    section {
+      @include span-columns(4);
+    }
+  }
+}

@@ -1,0 +1,59 @@
+// _graphic.scss
+
+.chart {
+  text,
+  .axis {
+    font-size: 12px;
+  }
+  
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #6d6e70;
+    shape-rendering: crispEdges;
+  }
+
+  .axis path {
+    display: none;
+  }
+
+  rect {
+    fill: $blue-50;
+  }
+  
+  path.summary {
+    fill: none;
+    stroke-width: 3px;
+  }
+}
+
+#comparison-container line { stroke-width: 3; }
+
+// Summary colors
+// Set on graphic path and #comparison-container line
+.county          { stroke: $lime; }
+.municipality    { stroke: $red; }
+.county-district { stroke: $teal; }
+.zipcode         { stroke: $stone; }
+
+// Graphic tooltip hidden on mobile
+#graphic-tooltip {
+  display: none;
+
+  @media (min-width: $medium) {
+    position: absolute;
+    display: block;
+    padding: 1em;
+    width: 300px;
+    border-radius: $default-border-radius;
+    border: 1px solid $gray;
+    background-color: white;
+    
+    h4 { @include margin(0) };
+  }
+}
+
+
+
+
+

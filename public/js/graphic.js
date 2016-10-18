@@ -38,7 +38,7 @@ var graphic = window.graphic || {};
     
     // Update graphic title
     if (data.name != "Hamilton County") {
-      document.querySelector("#barchart-title").innerHTML = data.name;  
+      container.querySelector("#title").innerHTML = data.name;  
     }
 
     // Initial setup
@@ -243,7 +243,7 @@ var graphic = window.graphic || {};
   function hover(bar) {
     bar
       .on("mouseover", function(d) {
-        var tooltip = d3.select("#barchart-tooltip").classed("hidden", false);
+        var tooltip = d3.select("#graphic-tooltip").classed("hidden", false);
         var dollar = d3.format("$,");
         
         tooltip.select("#year").html(d.year);
@@ -283,7 +283,7 @@ var graphic = window.graphic || {};
         });
       })
       .on("mouseout", function() {
-        d3.select("#barchart-tooltip").classed("hidden", true);
+        d3.select("#graphic-tooltip").classed("hidden", true);
       })
   }
 

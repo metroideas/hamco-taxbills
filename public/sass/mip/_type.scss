@@ -1,0 +1,41 @@
+// _type.scss
+body {
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: $header-line-height;
+  font-family: $header-font-family;
+  font-weight: $header-font-weight;
+}
+
+@media (min-width: $medium) {
+  h1 {
+    font-size: 2.5em;
+  }  
+}
+
+a {
+  color: $blue;
+}
+
+a:visited {
+  color: $navy;
+}
+
+strong {
+  font-weight: $strong-font-weight;
+}
+
+small {
+  font-size: $small-font-size;
+}
+
+ul {
+  padding-left: 1em;
+}
