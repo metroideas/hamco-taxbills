@@ -1,0 +1,72 @@
+// _map.scss
+
+// Map styles
+#map {
+  // Legend container
+  & > .legend {
+    background-color: $white;
+    border-radius: $default-border-radius;
+    border: 1px solid $white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    font-size: 12px;
+    font-family: $base-font-family;
+    padding: 1em;
+    position: absolute;
+    top: 10px;
+    left: 10px; 
+    z-index: 10;
+    
+    // Legend boxes
+    & > .box {
+      margin-top: 4px;
+      margin-right: 4px;
+      float: left;
+      width: 12px;
+      height: 12px;
+    }
+
+    // Legend box colors - quartiles
+    & > .box.q1 { background-color: #ffffb2; }
+    & > .box.q2 { background-color: #fecc5c; }
+    & > .box.q3 { background-color: #fd8d3c; }
+    & > .box.q4 { background-color: #e31a1c; }
+  }
+}
+
+// Tooltip 
+#map-tooltip {
+  width: 300px;
+  padding: 1em;
+  border-radius: $default-border-radius;
+  border: 1px solid $gray;
+  background-color: white;
+}
+
+// Mapbox overrides
+.mapboxgl-popup {
+  font-size: $base-font-size !important;
+  border: none !important;
+  height: auto !important;
+}
+
+.mapboxgl-popup-content {
+  h4 {
+    line-height: $header-line-height;
+    font-family: $header-font-family;
+    font-weight: $header-font-weight;
+  }
+
+  li {
+    height: inherit !important;
+    line-height: inherit !important;
+  }
+}
+
+#marker {
+  background-color: $blue;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 3px solid $white;
+  cursor: pointer;
+}
