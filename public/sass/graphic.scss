@@ -1,3 +1,14 @@
+$lime:    #8dbd45;
+$pine:    #0d382e;
+$red:     #df2027;
+$sky:     #7cadbb;
+$lt-gray: #b1b3b5;
+$stone:   #a4968d;
+$teal:    #1d8376;
+$blue-75: #0961ae;
+$blue-50: #4689c2;
+$blue-25: #c2d7eb;
+
 .chart {
   text,
   .axis {
@@ -16,28 +27,47 @@
   }
 
   rect {
-    fill: #6d6e70;
+    fill: $blue-50;
   }
-
+  
   path.summary {
     fill: none;
     stroke: black;
-    stroke-width: 1.5px;
+    stroke-width: 3px;
   }
 
-  path.county {
-    // stroke: #df2027;
+  path.summary.county {
+    stroke: $lime;
   }
-  path.municipality {
-    // stroke: #7cadbb;
+  
+  path.summary.municipality {
+    stroke: $red;
   }
-  path.countyDistrict {
-    // stroke: #8dbd45;
+
+  path.summary.county-district {
+    stroke: $teal;
   }
-  path.censusTract {
-    // stroke: #1d8376;
+  
+  path.summary.zipcode {
+    stroke: $stone;
   }
-  path.zipcode {
-    // stroke: #56678d;
+}
+
+#comparison-container {
+  p svg line {
+    stroke-width: 2;
+  }
+
+  p.county svg line {
+    stroke: $lime;
+  }
+  p.municipality svg line {
+    stroke: $red;
+  }
+  p.county-district svg line {
+    stroke: $teal;
+  }
+  p.zipcode svg line {
+    stroke: $stone;
   }
 }
