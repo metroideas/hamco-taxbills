@@ -33,9 +33,32 @@ var map = window.map || {};
     marker.id = 'marker';
 
     // Create popup, add to marker
+    // Gets recent median appraisal and formats string 
+    function appraisal(taxbills) {
+      var median = taxbills.filter(function(d) {
+        return d.year == '2016'
+      })[0].appraisal.median;
+
+      return d3.format("$,")(median);
+    }
+
+    var current = appraisal(location.taxbills);
+    var census  = appraisal(location.censusBlockGroup.taxbills);
+    var zipcode = appraisal(location.zipcode.taxbills);
+    
+    var html = '<h4>2016 appraisals</h4>' +
+      '<ul>' +
+        '<li>Location: ' + current + '</li>' +
+        '<li>Census median: ' + census + '</li>' +
+        '<li>ZIP code median: ' + zipcode + '</li>' + 
+      '</ul>';
+
+    var popup = new mapboxgl.Popup({offset: [0, -30]})
+      .setHTML(html);
 
     new mapboxgl.Marker(marker)
       .setLngLat(location.coordinates)
+     .setPopup(popup)
       .addTo(this);
   }
 

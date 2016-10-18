@@ -130,6 +130,27 @@ main header {
 article#map {
   height: 80vh; }
 
+.mapboxgl-popup {
+  font-size: 18px !important;
+  border: none !important;
+  height: auto !important; }
+
+.mapboxgl-popup-content h4 {
+  line-height: 1.3;
+  font-family: "Avenir Next", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-weight: 600; }
+
+.mapboxgl-popup-content li {
+  height: inherit;
+  line-height: inherit; }
+
+#map-tooltip {
+  width: 300px;
+  padding: 1em;
+  border-radius: 3px;
+  border: 1px solid #6d6e70;
+  background-color: white; }
+
 #marker {
   background-color: #0060ae;
   width: 25px;

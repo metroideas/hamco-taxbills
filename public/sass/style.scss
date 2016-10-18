@@ -171,6 +171,34 @@ article#map {
   height: 80vh;
 }
 
+// Override mapbox defaults
+.mapboxgl-popup {
+  font-size: $base-font-size !important;
+  border: none !important;
+  height: auto !important;
+}
+
+.mapboxgl-popup-content {
+  h4 {
+    line-height: $header-line-height;
+    font-family: $header-font-family;
+    font-weight: $header-font-weight;
+  }
+
+  li {
+    height: inherit;
+    line-height: inherit;
+  }
+}
+
+#map-tooltip {
+  width: 300px;
+  padding: 1em;
+  border-radius: $default-border-radius;
+  border: 1px solid $gray;
+  background-color: white;
+}
+
 #marker {
   background-color: $blue;
   width: 25px;
