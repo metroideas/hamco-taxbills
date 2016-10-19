@@ -1,6 +1,9 @@
 var map = window.map || {};
 
 (function() {
+  // Clear fallback img
+  var img = document.querySelector("#map img");
+  img.parentNode.removeChild(img);
   // Map bounds set to SW and NE corners of Hamilton County, Tennessee
   var bounds = [[-85.475593,34.982924],[-84.942572,35.459261]];
   // API key
