@@ -1,4 +1,12 @@
 // _utilities.css
+
+img.responsive { 
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
 .hidden {
   display: none !important;
 }
