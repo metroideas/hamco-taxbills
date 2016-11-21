@@ -16,6 +16,7 @@ var map = window.map || {};
   // Map settings
   map.fitBounds(bounds);
   map.addControl(new mapboxgl.NavigationControl());
+  map.scrollZoom.disable();
 
   /*
     map.update expects location data
@@ -26,7 +27,7 @@ var map = window.map || {};
       center: location.coordinates,
       zoom: 13
     });
-
+    
     // Remove any existing markers
     var old = document.getElementById('marker')
     
