@@ -10,3 +10,19 @@ img.responsive {
 .hidden {
   display: none !important;
 }
+
+.invisible {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+[data-scroll-disabled="true"] {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  position: fixed;
+}

@@ -3,39 +3,62 @@ body {
   font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: $base-line-height;
+  color: $black;
+}
+
+p {
+  @include margin(1.5em 0);
 }
 
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
+  @include margin(0);
   line-height: $header-line-height;
-  font-family: $header-font-family;
-  font-weight: $header-font-weight;
+  font-weight: $strong-font-weight;
 }
 
-@media (min-width: $medium) {
-  h1 {
-    font-size: 2.5em;
-  }  
-}
+h1 { font-size: 1.5em;  }
+h2 { font-size: 1.15em; }
+h3 { font-size: 1em;    }
 
-a {
-  color: $blue;
-}
-
-a:visited {
-  color: $navy;
+@media (min-width: $small) {
+  h1 { font-size: 3em;    }
+  h2 { font-size: 1.5em;  }
+  h3 { font-size: 1.25em; }
 }
 
 strong {
   font-weight: $strong-font-weight;
 }
 
-small {
-  font-size: $small-font-size;
+a {
+  color: $blue;
+
+  &:hover,
+  &:active {
+    color: $sky;
+  }
+
+  &:visited {
+    color: $navy;
+  }
 }
 
-ul {
-  padding-left: 1em;
+ul,
+ol {
+  list-style-position: inside;
+  margin-left: 0.5;
+  @include padding(0);
+}
+
+hr {
+  border-bottom: 2px solid $gray;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  margin: 3em 0 1em;
 }

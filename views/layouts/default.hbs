@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Explore local property data | Metro Ideas Project</title>
-  <meta name="description" content="A research startup devoted to the analysis and design of public policies that help make midsize cities work better for people.">
+  <meta name="description" content="An open platform for residents to explore over 14 years of property tax and appraisal data.">
   <meta name="keywords" content="chattanooga, policy, research, think tank">
   {{!-- Assets --}}
   <link rel="stylesheet" href="/css/style.min.css">
@@ -13,17 +13,17 @@
   <script src='https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' rel='stylesheet' />
   {{!-- Social --}}
-  {{!-- <meta property="og:title" content="Metro Ideas Project"> --}}
-  {{!-- <meta property="og:type" content="website"> --}}
-  {{!-- <meta property="og:url" content="http://metroideas.org/"> --}}
-  {{!-- <meta property="og:image" content="/img/map-landscape.png"> --}}
-  {{!-- <meta property="og:description" content="A research startup devoted to the analysis and design of public policies that help make midsize cities work better for people."> --}}
-  {{!-- <meta property="og:site_name" content="Metro Ideas Project"> --}}
-  {{!-- <meta name="twitter:card" content="summary"> --}}
-  {{!-- <meta name="twitter:site" content="@thinkmetro"> --}}
-  {{!-- <meta name="twitter:title" content="Metro Ideas Project"> --}}
-  {{!-- <meta name="twitter:description" content="A research startup devoted to the analysis and design of public policies that help make midsize cities work better for people."> --}}
-  {{!-- <meta name="twitter:image" content="/img/map-landscape.png"> --}}
+  <meta property="og:title" content="Explore local property data — Metro Ideas Project">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://hamco-taxbills.herokuapp.com/">
+  <meta property="og:image" content="/img/map-landscape.png">
+  <meta property="og:description" content="An open platform for residents to explore over 14 years of property tax and appraisal data.">
+  <meta property="og:site_name" content="Metro Ideas Project">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@thinkmetro">
+  <meta name="twitter:title" content="Explore local property data — Metro Ideas Project">
+  <meta name="twitter:description" content="An open platform for residents to explore over 14 years of property tax and appraisal data.">
+  <meta name="twitter:image" content="/img/map-landscape.png">
   {{!-- Favicons --}}
   <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
@@ -44,20 +44,47 @@
     ga('send', 'pageview');
   </script>
 </head>
-<body>
-  <header style="height:50px;background-color:#0060ae;">
-    <nav>&nbsp;</nav>
+<body data-scroll-disabled="false">
+  <header role="banner">
+    <a class="logo" href="http://metroideas.org" aria-label="Homepage">&nbsp;</a>
+    <a class="invisible" id="skip-to-main" href="#main">Skip to main</a>
+
+    <button
+      class="site-menu-toggle"
+      id="site-menu-toggle"
+      aria-label="Sitewide dropdown navigation menu"
+      aria-expanded="false"
+      aria-controls="site-menu"
+    >
+      <div class="top"></div>
+      <div class="middle"></div>
+      <div class="bottom"></div>
+    </button>
+
+    <nav
+      class="site-menu"
+      id="site-menu"
+      role="navigation"
+      aria-hidden="true"
+      aria-labelledby="site-menu-toggle"
+    >
+      <ul>
+        <li><a href="http://metroideas.org/about/">About</a></li>
+        <li><a href="http://metroideas.org/projects/">Research</a></li>
+        <li><a href="http://metroideas.org/blog/">Blog</a></li>
+        <li><a href="https://metroideas.kindful.com/">Support</a></li>
+      </ul>
+    </nav>
   </header>
+
   <main>
     {{{ body }}}
   </main>
-  <footer style="height:200px;background-color:black;">
-    &nbsp;
-  </footer>
   
   <script src="/js/mapbox.min.js"></script>
   <script src="/js/graphic.min.js"></script>
   <script src="/js/mip.min.js"></script>
+  <script src="/js/navbar.min.js"></script>
   
   <script>
   // Init bar graph
